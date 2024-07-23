@@ -6,14 +6,14 @@ namespace ProjectSA.Player
     using VUDK.Features.Main.InteractSystem;
     using ProjectSA.Gameplay.InteractSystem;
 
-    [RequireComponent(typeof(Interactor))]
+    [RequireComponent(typeof(RayInteractor))]
     public class PlayerInteractor : MonoBehaviour
     {
-        private Interactor _interactor;
+        private RayInteractor _rayInteractor;
         
         private void Awake()
         {
-            TryGetComponent(out _interactor);
+            TryGetComponent(out _rayInteractor);
         }
         
         private void OnEnable()
@@ -33,7 +33,7 @@ namespace ProjectSA.Player
 
         private void Interact()
         {
-            if (_interactor.TryGetCurrentInteractable(out InteractableBase interactable))
+            if (_rayInteractor.TryGetCurrentInteractable(out InteractableBase interactable))
                 interactable.Interact();
         }
     }

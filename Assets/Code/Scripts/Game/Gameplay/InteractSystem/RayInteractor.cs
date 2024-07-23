@@ -3,7 +3,7 @@ namespace ProjectSA.Gameplay.InteractSystem
     using UnityEngine;
     using VUDK.Features.Main.InteractSystem;
 
-    public class Interactor : MonoBehaviour
+    public class RayInteractor : MonoBehaviour
     {
         [Header("Interactor Settings")]
         [SerializeField]

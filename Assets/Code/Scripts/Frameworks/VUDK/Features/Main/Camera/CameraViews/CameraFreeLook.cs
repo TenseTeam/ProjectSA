@@ -29,11 +29,11 @@
         [SerializeField]
         private float _bottomClamp = -90.0f;
 
+        private Vector3 _targetRotation;
+        
+        public bool CanLook { get; private set; } = true;
         protected float ClampSens => Sensitivity * _sensitivityCoefficient / 100f;
         protected Camera Camera { get; private set; }
-
-        private bool _canLook = true;
-        private Vector3 _targetRotation;
 
         protected virtual void Awake()
         {
@@ -52,7 +52,7 @@
         public virtual void Enable()
         {
             InputsManager.Inputs.Camera.Enable();
-            _canLook = true;
+            CanLook = true;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@
         public virtual void Disable()
         {
             InputsManager.Inputs.Camera.Disable();
-            _canLook = false;
+            CanLook = false;
         }
 
         /// <summary>
@@ -91,7 +91,7 @@
         /// </summary>
         protected virtual void LookRotate()
         {
-            if (!_canLook) return;
+            if (!CanLook) return;
 
             Vector2 lookDirection = InputsManager.Inputs.Camera.Look.ReadValue<Vector2>();
             float mouseX = lookDirection.x * ClampSens;

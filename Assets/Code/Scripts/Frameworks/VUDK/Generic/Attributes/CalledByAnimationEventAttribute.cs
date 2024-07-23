@@ -1,4 +1,4 @@
-﻿namespace VUDK.CustomAttributes
+﻿namespace VUDK.Generic.Attributes
 {
     using System;
 
