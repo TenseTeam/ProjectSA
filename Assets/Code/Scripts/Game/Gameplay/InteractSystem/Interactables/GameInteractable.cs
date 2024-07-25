@@ -63,6 +63,7 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables
         {
             Debug.Log("Enabling interaction with " + gameObject.name);
             _graphicsController.EnableHighlight();
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnEnableInteractable, this);
         }
 
         public override void Disable()

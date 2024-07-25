@@ -34,9 +34,9 @@
             Button.onClick.RemoveListener(SelectChoice);
         }
 
-        public void Init(int choiceIndex)
+        public void Init(int arg)
         {
-            _choiceIndex = choiceIndex;
+            _choiceIndex = arg;
         }
 
         public bool Check()

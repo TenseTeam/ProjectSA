@@ -63,9 +63,9 @@ namespace VUDK.Features.More.ExplorationSystem.Nodes
         }
 
         /// <inheritdoc/>
-        public virtual void Init(ExplorationManager explorationManager)
+        public virtual void Init(ExplorationManager arg)
         {
-            ExplorationManager = explorationManager;
+            ExplorationManager = arg;
         }
 
         /// <inheritdoc/>

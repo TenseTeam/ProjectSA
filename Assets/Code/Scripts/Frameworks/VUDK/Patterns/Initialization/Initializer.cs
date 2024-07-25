@@ -14,9 +14,9 @@
     {
         protected T Args;
 
-        public void Init(T args)
+        public void Init(T arg)
         {
-            Args = args;
+            Args = arg;
         }
 
         public virtual bool Check()

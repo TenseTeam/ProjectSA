@@ -7,7 +7,7 @@
     /// A fundamental class for objects eligible for pooling.
     /// Inherit from this class or implement the <see cref="IPooledObject"/> interface to suit your requirements.
     /// </summary>
-    public abstract class PooledObject : MonoBehaviour, IPooledObject
+    public abstract class PooledObjectBase : MonoBehaviour, IPooledObject
     {
         public Pool RelatedPool { get; private set; }
 

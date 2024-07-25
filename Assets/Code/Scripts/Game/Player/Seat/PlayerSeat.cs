@@ -1,12 +1,12 @@
-namespace ProjectSA.Player
+namespace ProjectSA.Player.Seat
 {
     using GameConstants;
     using UnityEngine;
     using UnityEngine.InputSystem;
     using VUDK.Features.Main.Camera.CameraViews;
     using VUDK.Features.Main.InputSystem;
-    using ProjectSA.Gameplay.InteractSystem.Interactables;
     using VUDK.Features.Main.EventSystem;
+    using ProjectSA.Gameplay.InteractSystem.Interactables;
 
     public class PlayerSeat : GameInteractable
     {

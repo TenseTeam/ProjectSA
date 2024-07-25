@@ -16,7 +16,7 @@
     public interface IInit<T>
     {
         /// <summary>
-        /// Initializes object with its arguments.
+        /// Initializes object with its argument.
         /// </summary>
         public void Init(T arg);
 

@@ -35,9 +35,9 @@
         #endregion
 
         /// <inheritdoc/>
-        public virtual void Init(ExplorationManager explorationManager)
+        public virtual void Init(ExplorationManager arg)
         {
-            _explorationManager = explorationManager;
+            _explorationManager = arg;
             Init();
         }
 

@@ -45,9 +45,9 @@
             _dialogueToListen.OnInterrupt -= OnDialogueInterrupt;
         }
 
-        public void Init(DSDialogueContainerData dialogueToListen)
+        public void Init(DSDialogueContainerData arg)
         {
-            _dialogueToListen = dialogueToListen;
+            _dialogueToListen = arg;
             SubscribeEvents(); // Re-Subscribe
         }
 

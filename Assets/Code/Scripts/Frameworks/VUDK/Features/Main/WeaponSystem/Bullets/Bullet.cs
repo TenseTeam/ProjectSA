@@ -5,7 +5,7 @@
     using VUDK.Patterns.Pooling;
 
     [RequireComponent(typeof(Collider), typeof(Rigidbody))]
-    public class Bullet : PooledObject
+    public class Bullet : PooledObjectBase
     {
         [Header("Bullet settings")]
         public float Damage = 1f;

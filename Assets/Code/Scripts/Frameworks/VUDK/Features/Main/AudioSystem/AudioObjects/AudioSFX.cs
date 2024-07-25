@@ -9,7 +9,7 @@
     using VUDK.Features.Main.ScriptableKeys;
 
     [RequireComponent(typeof(AudioSource))]
-    public class AudioSFX : PooledObject, IAudioObject
+    public class AudioSFX : PooledObjectBase, IAudioObject
     {
         private AudioSource _audioSource;
         private DelayTask _clipLenghtTask;
