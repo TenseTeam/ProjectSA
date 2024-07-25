@@ -215,6 +215,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "LeaveInteraction",
+                    "type": "Button",
+                    "id": "ffe8c308-229b-461b-9273-79aa78cb1ed7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "StartSpeak",
                     "type": "Button",
                     "id": "581d4f52-2951-4dcb-94fe-79a488b104a5",
@@ -266,6 +275,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "StartSpeak",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "789f4cc1-9389-4d68-8249-6a15607e47b8",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeaveInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

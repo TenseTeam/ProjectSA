@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8386740812814785042}
   - component: {fileID: 8648660095224413357}
   - component: {fileID: 6916002072285240025}
+  - component: {fileID: 2496458095357706623}
   m_Layer: 6
   m_Name: pf_PlayerManager
   m_TagString: Untagged
@@ -120,3 +121,20 @@ MonoBehaviour:
     m_Bits: 9
   GroundedRadius: 0.3
   MaxSlopeAngle: 45
+--- !u!114 &2496458095357706623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3930697573390429473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e94e1036ef4b53a1c62f7fff8bf12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  _interactLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _interactDistance: 2

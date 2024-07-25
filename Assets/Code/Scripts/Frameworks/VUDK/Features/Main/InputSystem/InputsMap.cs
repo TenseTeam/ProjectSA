@@ -237,6 +237,15 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""LeaveInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""ffe8c308-229b-461b-9273-79aa78cb1ed7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""StartSpeak"",
                     ""type"": ""Button"",
                     ""id"": ""581d4f52-2951-4dcb-94fe-79a488b104a5"",
@@ -288,6 +297,17 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""StartSpeak"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""789f4cc1-9389-4d68-8249-6a15607e47b8"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeaveInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -552,6 +572,7 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
         // Interaction
         m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
         m_Interaction_Interact = m_Interaction.FindAction("Interact", throwIfNotFound: true);
+        m_Interaction_LeaveInteraction = m_Interaction.FindAction("LeaveInteraction", throwIfNotFound: true);
         m_Interaction_StartSpeak = m_Interaction.FindAction("StartSpeak", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
@@ -692,12 +713,14 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Interaction;
     private List<IInteractionActions> m_InteractionActionsCallbackInterfaces = new List<IInteractionActions>();
     private readonly InputAction m_Interaction_Interact;
+    private readonly InputAction m_Interaction_LeaveInteraction;
     private readonly InputAction m_Interaction_StartSpeak;
     public struct InteractionActions
     {
         private @InputsMap m_Wrapper;
         public InteractionActions(@InputsMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interact => m_Wrapper.m_Interaction_Interact;
+        public InputAction @LeaveInteraction => m_Wrapper.m_Interaction_LeaveInteraction;
         public InputAction @StartSpeak => m_Wrapper.m_Interaction_StartSpeak;
         public InputActionMap Get() { return m_Wrapper.m_Interaction; }
         public void Enable() { Get().Enable(); }
@@ -711,6 +734,9 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @LeaveInteraction.started += instance.OnLeaveInteraction;
+            @LeaveInteraction.performed += instance.OnLeaveInteraction;
+            @LeaveInteraction.canceled += instance.OnLeaveInteraction;
             @StartSpeak.started += instance.OnStartSpeak;
             @StartSpeak.performed += instance.OnStartSpeak;
             @StartSpeak.canceled += instance.OnStartSpeak;
@@ -721,6 +747,9 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @LeaveInteraction.started -= instance.OnLeaveInteraction;
+            @LeaveInteraction.performed -= instance.OnLeaveInteraction;
+            @LeaveInteraction.canceled -= instance.OnLeaveInteraction;
             @StartSpeak.started -= instance.OnStartSpeak;
             @StartSpeak.performed -= instance.OnStartSpeak;
             @StartSpeak.canceled -= instance.OnStartSpeak;
@@ -994,6 +1023,7 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
     public interface IInteractionActions
     {
         void OnInteract(InputAction.CallbackContext context);
+        void OnLeaveInteraction(InputAction.CallbackContext context);
         void OnStartSpeak(InputAction.CallbackContext context);
     }
     public interface ICameraActions

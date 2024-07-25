@@ -1,5 +1,6 @@
 namespace ProjectSA.Gameplay.InteractSystem
 {
+    using Interactables;
     using UnityEngine;
     using VUDK.Features.Main.InteractSystem;
 
@@ -13,17 +14,17 @@ namespace ProjectSA.Gameplay.InteractSystem
         [SerializeField]
         private float _interactDistance = 2f;
 
-        private InteractableBase _currentInteractable;
+        private GameInteractable _currentInteractable;
 
         private void Update()
         {
             RaycastInteract();
         }
 
-        public bool TryGetCurrentInteractable(out InteractableBase interactable)
+        public void Interact()
         {
-            interactable = _currentInteractable;
-            return interactable;
+            if (_currentInteractable)
+                _currentInteractable.RayInteract();
         }
         
         private void RaycastInteract()
@@ -31,28 +32,28 @@ namespace ProjectSA.Gameplay.InteractSystem
             Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _interactDistance, Color.red);
             if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactDistance, _interactLayer))
             {
-                if (hit.collider.TryGetComponent(out InteractableBase interactable))
+                if (hit.collider.TryGetComponent(out GameInteractable interactable))
                 {
                     if (_currentInteractable)
                     {
                         if (_currentInteractable != interactable)
                         {
-                            _currentInteractable.Disable();
+                            _currentInteractable.RayExit();
                             _currentInteractable = interactable;
-                            _currentInteractable.Enable();
+                            _currentInteractable.RayEnter();
                         }
                     }
                     else
                     {
                         _currentInteractable = interactable;
-                        _currentInteractable.Enable();
+                        _currentInteractable.RayEnter();
                     }
                 }
                 else
                 {
                     if (_currentInteractable)
                     {
-                        _currentInteractable.Disable();
+                        _currentInteractable.RayExit();
                         _currentInteractable = null;
                     }
                 }
@@ -61,7 +62,7 @@ namespace ProjectSA.Gameplay.InteractSystem
             {
                 if (_currentInteractable)
                 {
-                    _currentInteractable.Disable();
+                    _currentInteractable.RayExit();
                     _currentInteractable = null;
                 }
             }

@@ -40,12 +40,12 @@ namespace ProjectSA.Player
 
         private void OnEnable()
         {
-            InputsManager.Inputs.Interaction.Interact.performed += InputInteract;
+            InputsManager.Inputs.Interaction.LeaveInteraction.performed += LeaveInteraction;
         }
 
         private void OnDisable()
         {
-            InputsManager.Inputs.Interaction.Interact.performed -= InputInteract;
+            InputsManager.Inputs.Interaction.LeaveInteraction.performed -= LeaveInteraction;
         }
         
         public override void Interact()
@@ -72,7 +72,7 @@ namespace ProjectSA.Player
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnPlayerUnseat);
         }
         
-        private void InputInteract(InputAction.CallbackContext context)
+        private void LeaveInteraction(InputAction.CallbackContext context)
         {
             LeaveSeat();
         }
