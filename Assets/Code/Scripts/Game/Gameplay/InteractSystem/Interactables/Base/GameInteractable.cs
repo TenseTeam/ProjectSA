@@ -1,9 +1,11 @@
 namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
 {
     using UnityEngine;
+    using UnityEngine.InputSystem;
     using VUDK.Features.Main.EventSystem;
-    using VUDK.Features.Main.InteractSystem;
+    using VUDK.Features.Main.InputSystem;
     using VUDK.Generic.Managers.Main.Bases;
+    using VUDK.Features.Main.InteractSystem;
     using ProjectSA.GameConstants;
     using ProjectSA.Gameplay.InteractSystem.Data;
 
@@ -13,63 +15,97 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
         [field: Header("Interactable Settings")]
         [field: SerializeField]
         public InteractionType InteractionType { get; private set; } = InteractionType.Ray;
+        
+        public GameInteractableGraphicsController GraphicsController { get; private set; }
 
-        private GameInteractableGraphicsController _graphicsController;
+        private bool _isInteractionEnabled = true;
+        private bool _canBeSecondaryInteracted = false;
 
         protected virtual void Awake()
         {
-            TryGetComponent(out _graphicsController);
-            _graphicsController.CreateHighlightMaterial();
+            TryGetComponent(out GameInteractableGraphicsController graphicsController);
+            GraphicsController = graphicsController;
+            GraphicsController.CreateHighlightMaterial();
+        }
+
+        protected virtual void OnEnable()
+        {
+            InputsManager.Inputs.Interaction.SecondaryInteract.performed += InputSecondaryInteract;
+            EventManager.Ins.AddListener(PSAEventKeys.OnPlayerUnseat, OnPlayerUnseat);
+        }
+
+        protected virtual void OnDisable()
+        {
+            InputsManager.Inputs.Interaction.SecondaryInteract.performed -= InputSecondaryInteract;
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnPlayerUnseat, OnPlayerUnseat);
         }
 
         private void OnMouseEnter()
         {
-            if (InteractionType == InteractionType.Mouse && UIManagerBase.IsCursorEnabled)
+            if (InteractionType == InteractionType.Mouse && UIManagerBase.IsCursorEnabled && _isInteractionEnabled)
+            {
                 Enable();
+                _canBeSecondaryInteracted = true;
+            }
         }
 
         private void OnMouseExit()
         {
-            if (InteractionType == InteractionType.Mouse && UIManagerBase.IsCursorEnabled)
+            if (InteractionType == InteractionType.Mouse && UIManagerBase.IsCursorEnabled && _isInteractionEnabled)
+            {
                 Disable();
+                _canBeSecondaryInteracted = false;
+            }
         }
 
         private void OnMouseDown()
         {
-            if (InteractionType == InteractionType.Mouse && UIManagerBase.IsCursorEnabled)
+            if (InteractionType == InteractionType.Mouse && UIManagerBase.IsCursorEnabled && _isInteractionEnabled)
                 Interact();
         }
 
         public void RayEnter()
         {
-            if (InteractionType == InteractionType.Ray)
+            if (InteractionType == InteractionType.Ray && _isInteractionEnabled)
                 Enable();
         }
 
         public void RayExit()
         {
-            if (InteractionType == InteractionType.Ray)
+            if (InteractionType == InteractionType.Ray && _isInteractionEnabled)
                 Disable();
         }
 
         public void RayInteract()
         {
-            if (InteractionType == InteractionType.Ray)
+            if (InteractionType == InteractionType.Ray && _isInteractionEnabled)
                 Interact();
         }
 
         public override void Enable()
         {
-            Debug.Log("Enabling interaction with " + gameObject.name);
-            _graphicsController.EnableHighlight();
+            GraphicsController.Enable();
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnEnableInteractable, this);
         }
 
         public override void Disable()
         {
-            Debug.Log("Disabling interaction with " + gameObject.name);
-            _graphicsController.DisableHighlight();
+            GraphicsController.Disable();
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnDisableInteractable, this);
+        }
+
+        public void EnableInteraction(bool triggerEnable = true)
+        {
+            if (triggerEnable)
+                Enable();
+            _isInteractionEnabled = true;
+        }
+
+        public void DisableInteraction(bool triggerDisable = true)
+        {
+            if (triggerDisable)
+                Disable();
+            _isInteractionEnabled = false;
         }
 
         public override void Interact()
@@ -82,6 +118,18 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
         {
             Debug.Log("Secondary interacting with " + gameObject.name);
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnSecondaryInteractInteractable, this);
+        }
+
+        private void InputSecondaryInteract(InputAction.CallbackContext obj)
+        {
+            if (_canBeSecondaryInteracted)
+                SecondaryInteract();
+        }
+        
+        private void OnPlayerUnseat()
+        {
+            Disable();
+            _canBeSecondaryInteracted = false;
         }
     }
 }

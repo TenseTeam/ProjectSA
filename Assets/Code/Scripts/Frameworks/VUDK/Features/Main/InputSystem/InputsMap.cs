@@ -228,9 +228,27 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
             ""id"": ""c4b1d1a0-c3b9-42f9-8ea6-9683b184a527"",
             ""actions"": [
                 {
+                    ""name"": ""UseItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""232324c7-495c-4ede-aa84-15c90341143a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""aeedd568-8fae-4dcb-96bc-4d6c00689478"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondaryInteract"",
+                    ""type"": ""Button"",
+                    ""id"": ""505595b8-bcaa-40b2-9665-08b6d67dc1fe"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -308,6 +326,28 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LeaveInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31fbac8f-5bee-411d-bfd1-36fac122dbcd"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondaryInteract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c64a387-be06-43b4-aab2-56c54304c7d7"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -571,7 +611,9 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         // Interaction
         m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
+        m_Interaction_UseItem = m_Interaction.FindAction("UseItem", throwIfNotFound: true);
         m_Interaction_Interact = m_Interaction.FindAction("Interact", throwIfNotFound: true);
+        m_Interaction_SecondaryInteract = m_Interaction.FindAction("SecondaryInteract", throwIfNotFound: true);
         m_Interaction_LeaveInteraction = m_Interaction.FindAction("LeaveInteraction", throwIfNotFound: true);
         m_Interaction_StartSpeak = m_Interaction.FindAction("StartSpeak", throwIfNotFound: true);
         // Camera
@@ -712,14 +754,18 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
     // Interaction
     private readonly InputActionMap m_Interaction;
     private List<IInteractionActions> m_InteractionActionsCallbackInterfaces = new List<IInteractionActions>();
+    private readonly InputAction m_Interaction_UseItem;
     private readonly InputAction m_Interaction_Interact;
+    private readonly InputAction m_Interaction_SecondaryInteract;
     private readonly InputAction m_Interaction_LeaveInteraction;
     private readonly InputAction m_Interaction_StartSpeak;
     public struct InteractionActions
     {
         private @InputsMap m_Wrapper;
         public InteractionActions(@InputsMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @UseItem => m_Wrapper.m_Interaction_UseItem;
         public InputAction @Interact => m_Wrapper.m_Interaction_Interact;
+        public InputAction @SecondaryInteract => m_Wrapper.m_Interaction_SecondaryInteract;
         public InputAction @LeaveInteraction => m_Wrapper.m_Interaction_LeaveInteraction;
         public InputAction @StartSpeak => m_Wrapper.m_Interaction_StartSpeak;
         public InputActionMap Get() { return m_Wrapper.m_Interaction; }
@@ -731,9 +777,15 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_InteractionActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_InteractionActionsCallbackInterfaces.Add(instance);
+            @UseItem.started += instance.OnUseItem;
+            @UseItem.performed += instance.OnUseItem;
+            @UseItem.canceled += instance.OnUseItem;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @SecondaryInteract.started += instance.OnSecondaryInteract;
+            @SecondaryInteract.performed += instance.OnSecondaryInteract;
+            @SecondaryInteract.canceled += instance.OnSecondaryInteract;
             @LeaveInteraction.started += instance.OnLeaveInteraction;
             @LeaveInteraction.performed += instance.OnLeaveInteraction;
             @LeaveInteraction.canceled += instance.OnLeaveInteraction;
@@ -744,9 +796,15 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IInteractionActions instance)
         {
+            @UseItem.started -= instance.OnUseItem;
+            @UseItem.performed -= instance.OnUseItem;
+            @UseItem.canceled -= instance.OnUseItem;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @SecondaryInteract.started -= instance.OnSecondaryInteract;
+            @SecondaryInteract.performed -= instance.OnSecondaryInteract;
+            @SecondaryInteract.canceled -= instance.OnSecondaryInteract;
             @LeaveInteraction.started -= instance.OnLeaveInteraction;
             @LeaveInteraction.performed -= instance.OnLeaveInteraction;
             @LeaveInteraction.canceled -= instance.OnLeaveInteraction;
@@ -1022,7 +1080,9 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
     }
     public interface IInteractionActions
     {
+        void OnUseItem(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSecondaryInteract(InputAction.CallbackContext context);
         void OnLeaveInteraction(InputAction.CallbackContext context);
         void OnStartSpeak(InputAction.CallbackContext context);
     }

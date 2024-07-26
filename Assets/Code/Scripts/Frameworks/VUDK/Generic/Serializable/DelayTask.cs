@@ -48,7 +48,7 @@
             Start();
         }
 
-        public void Stop() => _isProcessing = false;
+        public void Pause() => _isProcessing = false;
         
         public void Resume() => _isProcessing = true;
         

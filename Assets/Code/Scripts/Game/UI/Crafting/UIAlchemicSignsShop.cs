@@ -19,7 +19,7 @@ namespace ProjectSA.UI.Crafting
         [SerializeField]
         private GameObject _uiSignPrefab;
         [SerializeField]
-        private AlchemicSignIngredientData[] _craftableSigns;
+        private ElementIngredientData[] _craftableSigns;
 
         private void Awake()
         {
@@ -47,7 +47,7 @@ namespace ProjectSA.UI.Crafting
         {
             _grid.transform.ClearChildren();
             
-            foreach (AlchemicSignIngredientData sign in _craftableSigns)
+            foreach (ElementIngredientData sign in _craftableSigns)
             {
                 GameObject signGO = Instantiate(_uiSignPrefab, _grid.transform);
                 if (signGO.TryGetComponent(out UIAlchemicSign uiSign))

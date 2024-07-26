@@ -26,19 +26,31 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
                 };
             }
             
-            DisableHighlight();
+            Disable();
         }
         
-        public void EnableHighlight()
+        public void Enable()
         {
             foreach (Material highlightMaterial in _highlightMaterials)
                 highlightMaterial.SetFloat("_Scale", _highlightScale);
+            
+            OnEnableInteractable();
         }
         
-        public void DisableHighlight()
+        public void Disable()
         {
             foreach (Material highlightMaterial in _highlightMaterials)
                 highlightMaterial.SetFloat("_Scale", 0f);
+            
+            OnDisableInteractable();
+        }
+        
+        public virtual void OnEnableInteractable()
+        {
+        }
+        
+        public virtual void OnDisableInteractable()
+        {
         }
     }
 }

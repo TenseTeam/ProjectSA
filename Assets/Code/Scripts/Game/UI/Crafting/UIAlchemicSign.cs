@@ -9,7 +9,7 @@ namespace ProjectSA.UI.Crafting
     using ProjectSA.GameConstants;
     using Gameplay.CraftingItems.Data.ScriptableObjects;
 
-    public class UIAlchemicSign : MonoBehaviour, IInit<AlchemicSignIngredientData>
+    public class UIAlchemicSign : MonoBehaviour, IInit<ElementIngredientData>
     {
         [Header("UI Elements")]
         [SerializeField]
@@ -21,9 +21,9 @@ namespace ProjectSA.UI.Crafting
         [SerializeField]
         private TMP_Text _bloodCostText;
         
-        public AlchemicSignIngredientData IngredientData { get; private set; }
+        public ElementIngredientData IngredientData { get; private set; }
         
-        public void Init(AlchemicSignIngredientData arg)
+        public void Init(ElementIngredientData arg)
         {
             IngredientData = arg;
             SetUIElements();

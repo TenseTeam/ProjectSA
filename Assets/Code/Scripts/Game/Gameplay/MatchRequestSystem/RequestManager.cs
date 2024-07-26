@@ -22,15 +22,14 @@ namespace ProjectSA.Gameplay.MatchRequestSystem
         
         private void OnEnable()
         {
-            EventManager.Ins.AddListener<RecipeData>(PSAEventKeys.OnCraftedRecipe, OnCraftedRecipe);
+            EventManager.Ins.AddListener<RecipeData>(PSAEventKeys.OnCraftedRecipeSuccess, OnCraftedRecipe);
         }
 
         private void OnDisable()
         {
-            EventManager.Ins.RemoveListener<RecipeData>(PSAEventKeys.OnCraftedRecipe, OnCraftedRecipe);
+            EventManager.Ins.RemoveListener<RecipeData>(PSAEventKeys.OnCraftedRecipeSuccess, OnCraftedRecipe);
         }
-
-        [ContextMenu("Send Provided Item")] // TODO: Remove this, it's just for testing
+        
         public void SendProvidedItem()
         {
             if (!_currentProvidedItem) return;
@@ -41,6 +40,7 @@ namespace ProjectSA.Gameplay.MatchRequestSystem
         private void OnCraftedRecipe(RecipeData recipe)
         { 
             _currentProvidedItem = recipe.Result;
+            SendProvidedItem();
         }
         
         private void CheckRequest(CraftedItemDataBase craftedItem)
@@ -56,11 +56,19 @@ namespace ProjectSA.Gameplay.MatchRequestSystem
         private void RequestSuccess(CraftedItemDataBase craftedItem)
         {
             _unsatisfiedItems.Remove(craftedItem);
+            Debug.Log("Request Success");
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnRequestSuccess, craftedItem);
+
+            if (_unsatisfiedItems.Count == 0)
+            {
+                Debug.Log("<color=green>All requests satisfied</color>");
+                EventManager.Ins.TriggerEvent(PSAEventKeys.OnAllRequestsSatisfied);
+            }
         }
         
         private void RequestFail(CraftedItemDataBase craftedItem)
         {
+            Debug.Log("Request Fail");
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnRequestFail, craftedItem);
         }
     }

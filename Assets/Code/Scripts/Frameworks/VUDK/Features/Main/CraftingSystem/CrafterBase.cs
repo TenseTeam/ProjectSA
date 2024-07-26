@@ -12,10 +12,14 @@ namespace VUDK.Features.CraftingSystem
         [SerializeField]
         private CookbookData _cookbook;
         [SerializeField]
+        private bool _useExactIngredients;
+        [SerializeField]
         private DelayTask _craftTask;
 
         private List<IngredientData> _currentIngredients = new List<IngredientData>();
 
+        public bool IsCrafting => _craftTask.IsRunning;
+        
         protected virtual void OnEnable()
         {
             _craftTask.OnTaskCompleted += CheckCraft;
@@ -51,6 +55,8 @@ namespace VUDK.Features.CraftingSystem
 
         public void StartCraft()
         {
+            if (IsCrafting || _currentIngredients.Count == 0) return;
+            
             _craftTask.Start();
             OnStartCraft();
         }
@@ -62,6 +68,8 @@ namespace VUDK.Features.CraftingSystem
         protected abstract void OnClearIngredients();
 
         protected abstract void OnStartCraft();
+        
+        protected abstract void OnCraftCompleted();
 
         protected abstract void OnSuccessCraft(RecipeData craftedRecipe);
 
@@ -73,18 +81,18 @@ namespace VUDK.Features.CraftingSystem
                 SuccessCraft(craftedRecipe);
             else
                 FailCraft();
+            
+            OnCraftCompleted();
         }
 
         private void SuccessCraft(RecipeData craftedRecipe)
         {
-            Debug.Log($"Crafted recipe {craftedRecipe.name}...");
             ClearIngredients();
             OnSuccessCraft(craftedRecipe);
         }
 
         private void FailCraft()
         {
-            Debug.Log("Failed to craft recipe...");
             ClearIngredients();
             OnFailCraft();
         }
@@ -93,12 +101,13 @@ namespace VUDK.Features.CraftingSystem
         {
             foreach (RecipeData recipe in _cookbook.Recipes)
             {
-                if (recipe.Ingredients.Length != _currentIngredients.Count) continue;
+                if (_useExactIngredients)
+                    if (recipe.Ingredients.Length != _currentIngredients.Count) continue;
 
                 bool allIngredientsMatch = true;
-                foreach (IngredientData ingredient in _currentIngredients)
+                foreach (IngredientData ingredient in recipe.Ingredients)
                 {
-                    if (!recipe.Ingredients.Contains(ingredient))
+                    if (!_currentIngredients.Contains(ingredient))
                     {
                         allIngredientsMatch = false;
                         break;
