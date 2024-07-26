@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_LiquidShader
+  m_Name: m_LiquidShader 3
   m_Shader: {fileID: -6465566751694194690, guid: ece9da3bb54a9284798490102308e91a,
     type: 3}
   m_Parent: {fileID: 0}
@@ -51,9 +51,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fill: 0.547
+    - _Fill: 0.52
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _BaseColor: {r: 85.49064, g: 0, b: 47.762604, a: 0}
+    - _BaseColor: {r: 0, g: 1024.0001, b: 111.56691, a: 0}
   m_BuildTextureStacks: []
