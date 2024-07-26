@@ -1,7 +1,7 @@
 namespace ProjectSA.Player
 {
     using GameConstants;
-    using Gameplay.Items;
+    using Gameplay.CraftingItems;
     using UnityEngine;
     using VUDK.Features.Main.EventSystem;
 
@@ -10,43 +10,44 @@ namespace ProjectSA.Player
         [Header("Player Hand Settings")]
         [SerializeField]
         private Transform _handTransform;
-        
-        private AlchemicSign _currentAlchemicSign;
+
+        // TODO: Spawn a game usable object in the player's hand
+        // private AlchemicSignInteractable _currentAlchemicSignInteractable;
         
         private void OnEnable()
         {
-            EventManager.Ins.AddListener<AlchemicSign>(PSAEventKeys.OnAlchemicSignInteracted, OnAlchemicSignInteracted);
+            EventManager.Ins.AddListener<AlchemicSignInteractable>(PSAEventKeys.OnAlchemicSignInteracted, OnAlchemicSignInteracted);
         }
 
         private void OnDisable()
         {
-            EventManager.Ins.RemoveListener<AlchemicSign>(PSAEventKeys.OnAlchemicSignInteracted, OnAlchemicSignInteracted);
+            EventManager.Ins.RemoveListener<AlchemicSignInteractable>(PSAEventKeys.OnAlchemicSignInteracted, OnAlchemicSignInteracted);
         }
         
-        public void AddAlchemiSignToHand(AlchemicSign alchemicSign)
+        public void AddAlchemiSignToHand(AlchemicSignInteractable alchemicSignInteractable)
         {
-            if (_currentAlchemicSign)
-                _currentAlchemicSign.Dispose();
-            
-            _currentAlchemicSign = alchemicSign;
-            _currentAlchemicSign.transform.SetParent(_handTransform);
-            _currentAlchemicSign.transform.SetPositionAndRotation(_handTransform.position, _handTransform.rotation);
-            EventManager.Ins.TriggerEvent(PSAEventKeys.OnSignAddedToHand, _currentAlchemicSign);
+            // if (_currentAlchemicSignInteractable)
+            //     _currentAlchemicSignInteractable.Dispose();
+            //
+            // _currentAlchemicSignInteractable = alchemicSignInteractable;
+            // _currentAlchemicSignInteractable.transform.SetParent(_handTransform);
+            // _currentAlchemicSignInteractable.transform.SetPositionAndRotation(_handTransform.position, _handTransform.rotation);
+            // EventManager.Ins.TriggerEvent(PSAEventKeys.OnSignAddedToHand, _currentAlchemicSignInteractable);
         }
         
         public void RemoveAlchemicSignFromHand()
         {
-            if (_currentAlchemicSign)
-            {
-                _currentAlchemicSign.Dispose();
-                EventManager.Ins.TriggerEvent(PSAEventKeys.OnSignRemovedFromHand);
-                _currentAlchemicSign = null;
-            }
+            // if (_currentAlchemicSignInteractable)
+            // {
+            //     _currentAlchemicSignInteractable.Dispose();
+            //     EventManager.Ins.TriggerEvent(PSAEventKeys.OnSignRemovedFromHand);
+            //     _currentAlchemicSignInteractable = null;
+            // }
         }
         
-        private void OnAlchemicSignInteracted(AlchemicSign alchemicSign)
+        private void OnAlchemicSignInteracted(AlchemicSignInteractable alchemicSignInteractable)
         {
-            AddAlchemiSignToHand(alchemicSign);
+            // AddAlchemiSignToHand(alchemicSignInteractable);
         }
     }
 }

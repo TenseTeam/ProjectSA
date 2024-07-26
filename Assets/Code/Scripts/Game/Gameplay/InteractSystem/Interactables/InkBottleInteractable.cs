@@ -1,7 +1,8 @@
 namespace ProjectSA.Gameplay.InteractSystem.Interactables
 {
-    using GameConstants;
     using VUDK.Features.Main.EventSystem;
+    using ProjectSA.Gameplay.InteractSystem.Interactables.Base;
+    using ProjectSA.GameConstants;
 
     public class InkBottleInteractable : GameInteractable
     {

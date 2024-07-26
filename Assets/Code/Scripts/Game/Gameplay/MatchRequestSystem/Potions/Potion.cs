@@ -1,8 +1,8 @@
-namespace ProjectSA.Gameplay.Items
+namespace ProjectSA.Gameplay.MatchRequestSystem.Potions
 {
     using VUDK.Patterns.Initialization.Interfaces;
     using VUDK.Patterns.Pooling;
-    using ProjectSA.Gameplay.Items.Data.ScriptableObjects;
+    using ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects;
 
     public class Potion : PooledObjectBase, IInit<CraftedPotionData>
     {

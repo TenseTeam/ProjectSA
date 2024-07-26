@@ -3,9 +3,10 @@ namespace ProjectSA.Patterns.Factories
     using VUDK.Features.Main.ScriptableKeys;
     using VUDK.Generic.Managers.Main;
     using VUDK.Patterns.Pooling;
-    using ProjectSA.Gameplay.Items;
     using ProjectSA.Managers;
-    using ProjectSA.Gameplay.Items.Data.ScriptableObjects;
+    using ProjectSA.Gameplay.CraftingItems;
+    using ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects;
+    using ProjectSA.Gameplay.MatchRequestSystem.Potions;
 
     /// <summary>
     /// Responsible for creating game objects.
@@ -22,12 +23,12 @@ namespace ProjectSA.Patterns.Factories
             return potion;
         }
 
-        public static AlchemicSign CreateAlchemicSign(AlchemicSignIngredientData ingredientData)
+        public static AlchemicSignInteractable CreateAlchemicSign(AlchemicSignIngredientData ingredientData)
         {
             ScriptableKey poolKey = ingredientData.IngredientPoolKey;
-            AlchemicSign alchemicSign = PoolsManager.Pools[poolKey].Get<AlchemicSign>();
-            alchemicSign.Init(ingredientData);
-            return alchemicSign;
+            AlchemicSignInteractable alchemicSignInteractable = PoolsManager.Pools[poolKey].Get<AlchemicSignInteractable>();
+            alchemicSignInteractable.Init(ingredientData);
+            return alchemicSignInteractable;
         }
     }
 }

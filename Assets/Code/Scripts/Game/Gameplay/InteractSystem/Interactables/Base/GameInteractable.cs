@@ -1,12 +1,11 @@
-namespace ProjectSA.Gameplay.InteractSystem.Interactables
+namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
 {
-    using System;
     using UnityEngine;
     using VUDK.Features.Main.EventSystem;
     using VUDK.Features.Main.InteractSystem;
+    using VUDK.Generic.Managers.Main.Bases;
     using ProjectSA.GameConstants;
     using ProjectSA.Gameplay.InteractSystem.Data;
-    using VUDK.Generic.Managers.Main.Bases;
 
     [RequireComponent(typeof(GameInteractableGraphicsController))]
     public class GameInteractable : InteractableBase
@@ -77,6 +76,12 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables
         {
             Debug.Log("Interacting with " + gameObject.name);
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnInteractInteractable, this);
+        }
+
+        public virtual void SecondaryInteract()
+        {
+            Debug.Log("Secondary interacting with " + gameObject.name);
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnSecondaryInteractInteractable, this);
         }
     }
 }

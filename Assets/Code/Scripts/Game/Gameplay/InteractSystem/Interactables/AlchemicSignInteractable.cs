@@ -1,14 +1,14 @@
-namespace ProjectSA.Gameplay.Items
+namespace ProjectSA.Gameplay.CraftingItems
 {
     using VUDK.Patterns.Initialization.Interfaces;
     using VUDK.Patterns.Pooling;
     using VUDK.Patterns.Pooling.Interfaces;
     using VUDK.Features.Main.EventSystem;
     using ProjectSA.GameConstants;
-    using ProjectSA.Gameplay.Items.Data.ScriptableObjects;
-    using ProjectSA.Gameplay.InteractSystem.Interactables;
+    using ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects;
+    using ProjectSA.Gameplay.InteractSystem.Interactables.Base;
 
-    public class AlchemicSign : GameInteractable, IInit<AlchemicSignIngredientData>, IPooledObject
+    public class AlchemicSignInteractable : GameInteractable, IInit<AlchemicSignIngredientData>, IPooledObject
     {
         public Pool RelatedPool { get; private set; }
         public AlchemicSignIngredientData IngredientData { get; private set; }
@@ -42,6 +42,12 @@ namespace ProjectSA.Gameplay.Items
         {
             base.Interact();
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnAlchemicSignInteracted, this);
+        }
+
+        public override void SecondaryInteract()
+        {
+            base.SecondaryInteract();
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnAlchemicSignSecondaryInteracted, this);
         }
     }
 }

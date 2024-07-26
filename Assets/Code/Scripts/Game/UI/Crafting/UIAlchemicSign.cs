@@ -7,7 +7,7 @@ namespace ProjectSA.UI.Crafting
     using VUDK.Patterns.Initialization.Interfaces;
     using VUDK.Features.Main.EventSystem;
     using ProjectSA.GameConstants;
-    using ProjectSA.Gameplay.Items.Data.ScriptableObjects;
+    using Gameplay.CraftingItems.Data.ScriptableObjects;
 
     public class UIAlchemicSign : MonoBehaviour, IInit<AlchemicSignIngredientData>
     {

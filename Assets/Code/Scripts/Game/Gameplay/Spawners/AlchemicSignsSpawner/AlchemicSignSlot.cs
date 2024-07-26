@@ -1,47 +1,59 @@
 namespace ProjectSA.Gameplay.Spawners.AlchemicSignsSpawner
 {
+    using System;
     using UnityEngine;
     using VUDK.Features.Main.EventSystem;
     using ProjectSA.GameConstants;
-    using ProjectSA.Gameplay.Items;
+    using CraftingItems;
     using ProjectSA.Patterns.Factories;
-    using ProjectSA.Gameplay.Items.Data.ScriptableObjects;
+    using CraftingItems.Data.ScriptableObjects;
+    using UnityEngine.Rendering.Universal;
 
     public class AlchemicSignSlot : MonoBehaviour
     {
         [Header("Slot Settings")]
         [SerializeField]
         private Transform _slotPosition;
+        [SerializeField]
+        private DecalProjector _decal;
         
-        private AlchemicSign _currentSign;
+        private Material _decalMaterial;
+        private AlchemicSignInteractable _currentSignInteractable;
+
+        private void Awake()
+        { 
+            _decalMaterial = new Material(_decal.material);
+            _decal.material = _decalMaterial;
+        }
 
         private void OnEnable()
         {
-            EventManager.Ins.AddListener<AlchemicSign>(PSAEventKeys.OnSignAddedToHand, OnSignAddedToHand);
+            EventManager.Ins.AddListener<AlchemicSignInteractable>(PSAEventKeys.OnSignAddedToHand, OnSignAddedToHand);
         }
 
         private void OnDisable()
         {
-            EventManager.Ins.RemoveListener<AlchemicSign>(PSAEventKeys.OnSignAddedToHand, OnSignAddedToHand);
+            EventManager.Ins.RemoveListener<AlchemicSignInteractable>(PSAEventKeys.OnSignAddedToHand, OnSignAddedToHand);
         }
 
         public void FillSlot(AlchemicSignIngredientData data)
         {
-            if (_currentSign)
-                _currentSign.Dispose();
+            if (_currentSignInteractable)
+                _currentSignInteractable.Dispose();
             
-            _currentSign = GameFactory.CreateAlchemicSign(data);
-            _currentSign.transform.SetPositionAndRotation(_slotPosition.position, _slotPosition.rotation);
+            _decalMaterial.SetTexture("_BaseMap", data.SignDecalTexture);
+            _currentSignInteractable = GameFactory.CreateAlchemicSign(data);
+            _currentSignInteractable.transform.SetPositionAndRotation(_slotPosition.position, _slotPosition.rotation);
         }
 
         public void ReleaseSlot()
         {
-            _currentSign = null;
+            _currentSignInteractable = null;
         }
         
-        private void OnSignAddedToHand(AlchemicSign sign)
+        private void OnSignAddedToHand(AlchemicSignInteractable signInteractable)
         {
-            if (sign == _currentSign)
+            if (signInteractable == _currentSignInteractable)
                 ReleaseSlot();
         }
     }

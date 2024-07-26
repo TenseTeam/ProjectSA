@@ -4,10 +4,12 @@ namespace ProjectSA.GameConstants
     {
         // Interaction Events
         public const string OnInteractInteractable = "OnPlayerInteract";
+        public const string OnSecondaryInteractInteractable = "OnPlayerSecondaryInteract";
         public const string OnEnableInteractable = "OnEnableInteractable";
         public const string OnDisableInteractable = "OnDisableInteractable";
         public const string OnInkBottleInteracted = "OnInkBottleInteracted";
         public const string OnAlchemicSignInteracted = "OnAlchemicSignInteracted";
+        public const string OnAlchemicSignSecondaryInteracted = "OnAlchemicSignSecondaryInteracted";
         
         // Player Events
         public const string OnPlayerSeat = "OnPlayerSeat";

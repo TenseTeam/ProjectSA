@@ -1,4 +1,4 @@
-namespace ProjectSA.Gameplay.Items.Data.ScriptableObjects
+namespace ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects
 {
     using UnityEngine;
     using VUDK.Features.CraftingSystem.Data.ScriptableObjects;

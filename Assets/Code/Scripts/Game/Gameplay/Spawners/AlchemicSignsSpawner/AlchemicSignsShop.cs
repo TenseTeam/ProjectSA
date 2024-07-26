@@ -7,7 +7,7 @@ namespace ProjectSA.Gameplay.Spawners.AlchemicSignsSpawner
     using ProjectSA.Player;
     using ProjectSA.Managers;
     using ProjectSA.GameConstants;
-    using ProjectSA.Gameplay.Items.Data.ScriptableObjects;
+    using CraftingItems.Data.ScriptableObjects;
 
     public class AlchemicSignsShop : MonoBehaviour, ICastGameManager<PSAGameManager>
     {

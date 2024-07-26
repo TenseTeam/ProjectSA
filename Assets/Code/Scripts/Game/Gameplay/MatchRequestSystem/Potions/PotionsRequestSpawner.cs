@@ -6,8 +6,8 @@ namespace ProjectSA.Gameplay.MatchRequestSystem
     using VUDK.Features.CraftingSystem.Data.ScriptableObjects;
     using ProjectSA.GameConstants;
     using ProjectSA.Patterns.Factories;
-    using ProjectSA.Gameplay.Items;
-    using ProjectSA.Gameplay.Items.Data.ScriptableObjects;
+    using ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects;
+    using ProjectSA.Gameplay.MatchRequestSystem.Potions;
 
     public class PotionsRequestSpawner : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-namespace ProjectSA.Gameplay.InteractSystem.Interactables
+namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
 {
     using System.Collections.Generic;
     using UnityEngine;

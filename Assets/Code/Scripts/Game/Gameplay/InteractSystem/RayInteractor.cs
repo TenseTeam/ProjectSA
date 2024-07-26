@@ -1,8 +1,7 @@
 namespace ProjectSA.Gameplay.InteractSystem
 {
-    using Interactables;
     using UnityEngine;
-    using VUDK.Features.Main.InteractSystem;
+    using ProjectSA.Gameplay.InteractSystem.Interactables.Base;
 
     public class RayInteractor : MonoBehaviour
     {

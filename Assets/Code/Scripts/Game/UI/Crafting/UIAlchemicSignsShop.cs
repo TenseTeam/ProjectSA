@@ -4,7 +4,7 @@ namespace ProjectSA.UI.Crafting
     using UnityEngine.UI;
     using VUDK.Extensions;
     using VUDK.Features.Main.EventSystem;
-    using ProjectSA.Gameplay.Items.Data.ScriptableObjects;
+    using Gameplay.CraftingItems.Data.ScriptableObjects;
     using ProjectSA.GameConstants;
 
     public class UIAlchemicSignsShop : MonoBehaviour
