@@ -15,7 +15,7 @@ namespace ProjectSA.Gameplay.UsableItems.Base
         [SerializeField]
         private bool _canBeUsed = true;
         
-        public ElementIngredientData IngredientData { get; private set; }
+        public ElementIngredientData ElementIngredientData { get; private set; }
         protected PlayerHand PlayerHand { get; private set; }
 
         protected virtual void OnEnable()
@@ -31,12 +31,12 @@ namespace ProjectSA.Gameplay.UsableItems.Base
         public void Init(PlayerHand arg1, ElementIngredientData arg2)
         {
             PlayerHand = arg1;
-            IngredientData = arg2;
+            ElementIngredientData = arg2;
         }
         
         public bool Check()
         {
-            return PlayerHand != null && IngredientData != null;
+            return PlayerHand != null && ElementIngredientData != null;
         }
         
         public void EnableUsage()

@@ -441,7 +441,7 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e709ff18-d964-4960-a657-18b5bb7b39ce"",
-                    ""path"": ""<Keyboard>/anyKey"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",

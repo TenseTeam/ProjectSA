@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd44c5ded79f46579bcb9e80b98b1cbc, type: 3}
   m_Name: so_LightIngredient
   m_EditorClassIdentifier: 
-  Name: Light
+  Name: Sun
   Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   SignDecalTexture: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
   InkCost: 25

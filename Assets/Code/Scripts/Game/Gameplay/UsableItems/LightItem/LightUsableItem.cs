@@ -43,8 +43,9 @@ namespace ProjectSA.Gameplay.UsableItems.LightItem
         }
 
         private void Update()
-        { 
-            _lightDurationTask.Process();
+        {
+            if (_lightDurationTask.Process())
+                EventManager.Ins.TriggerEvent(PSAEventKeys.OnLightConsuming, LightRemainingTime);
         }
 
         protected override void OnUse()

@@ -13,6 +13,7 @@ namespace ProjectSA.Gameplay.UsableItems.LightItem
         private void Awake()
         {
             HideObject();
+            gameObject.layer = LayerMask.NameToLayer(PSAConstants.LightHideObjectLayer);
         }
 
         private void OnEnable()

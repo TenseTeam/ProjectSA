@@ -63,7 +63,7 @@ namespace ProjectSA.Managers.GameManager.ElementsIngredientsManager
 
         private void OnElementAddedToHand(UsableItemBase usableItem)
         {
-            if (usableItem.IngredientData == _currentElement.IngredientData)
+            if (usableItem.ElementIngredientData == _currentElement.IngredientData)
                 ClearSlot();
         }
 

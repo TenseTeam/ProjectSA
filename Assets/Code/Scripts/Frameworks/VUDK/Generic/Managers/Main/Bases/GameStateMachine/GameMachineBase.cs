@@ -16,5 +16,7 @@
 #endif
             EventManager.Ins.TriggerEvent(EventKeys.GameEvents.OnGameMachineStart);
         }
+
+        public abstract void Run();
     }
 }

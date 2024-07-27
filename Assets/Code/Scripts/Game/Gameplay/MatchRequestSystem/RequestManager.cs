@@ -15,6 +15,8 @@ namespace ProjectSA.Gameplay.MatchRequestSystem
         private List<CraftedItemDataBase> _unsatisfiedItems;
         private CraftedItemDataBase _currentProvidedItem;
         
+        public bool AreAllRequestsSatisfied => _unsatisfiedItems.Count == 0;
+        
         private void Awake()
         {
             _unsatisfiedItems = new List<CraftedItemDataBase>(_requestedItems);

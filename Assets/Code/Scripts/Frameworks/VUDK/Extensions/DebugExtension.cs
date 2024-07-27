@@ -8,10 +8,5 @@
         {
             Debug.Log($"<color=yellow>{message}</color>");
         }
-
-        public static void Error(string message)
-        {
-            Debug.LogError($"<color=red>{message}</color>");
-        }
     }
 }

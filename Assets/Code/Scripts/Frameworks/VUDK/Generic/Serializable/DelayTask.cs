@@ -15,6 +15,7 @@
         public bool IsCompleted { get; private set; }
 
         public bool IsRunning => _isProcessing;
+        public float RemainingTime => Duration - ElapsedTime;
         public float ElapsedPercentNormalized => Mathf.Clamp01(ElapsedPercentPrecise);
         public float ElapsedPercent => ElapsedTime / Duration;
         public float ElapsedPercentPrecise => ElapsedPercent * ElapsedPercent * (3f - 2f * ElapsedPercent);
@@ -39,7 +40,13 @@
         public void Start()
         {
             Reset();
-            _isProcessing = true;
+            Resume();
+        }
+        
+        public void Stop()
+        {
+            Reset();
+            Pause();
         }
 
         public void Start(float changeDuration)

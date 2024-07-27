@@ -26,6 +26,14 @@ namespace ProjectSA.GameConstants
         public const string OnBloodConsumed = "OnBloodConsumed";
         public const string OnBoughtIngredient = "OnBoughtIngredient";
         
+        // Game Timers Events
+        public const string OnRequestTimerStart = "OnRequestTimerStart";
+        public const string OnStunTimerStart = "OnStunTimerStart";
+        public const string OnRequestTimerEnd = "OnRequestTimerEnd";
+        public const string OnStunTimerEnd = "OnStunTimerEnd";
+        public const string OnRequestTimerTick = "OnRequestTimerTick";
+        public const string OnStunTimerTick = "OnStunTimerTick";
+        
         // Puzzle Events
         public const string OnCrystalPuzzleSolved = "OnCrystalPuzzleSolved";
         public const string OnChestPuzzleSolved = "OnChestPuzzleSolved";
@@ -33,6 +41,7 @@ namespace ProjectSA.GameConstants
         // Items Events
         public const string OnLightOn = "OnLightOn";
         public const string OnLightOff = "OnLightOff";
+        public const string OnLightConsuming = "OnLightConsuming";
         
         // Crafting Events
         public const string OnAddedCraftIngredient = "OnAddedCraftIngredient";
