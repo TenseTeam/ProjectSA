@@ -59,7 +59,11 @@
         private void UnregisterEvent(string eventKey, Delegate listener)
         {
             if (_eventListeners.ContainsKey(eventKey))
+            {
                 _eventListeners[eventKey] = Delegate.Remove(_eventListeners[eventKey], listener);
+                if (_eventListeners[eventKey] == null)
+                    _eventListeners.Remove(eventKey);
+            }
         }
     }
 }

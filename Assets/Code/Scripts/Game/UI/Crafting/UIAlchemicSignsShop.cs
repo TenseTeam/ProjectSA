@@ -1,13 +1,17 @@
 namespace ProjectSA.UI.Crafting
 {
+    using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.UI;
     using VUDK.Extensions;
     using VUDK.Features.Main.EventSystem;
-    using Gameplay.CraftingItems.Data.ScriptableObjects;
+    using VUDK.Generic.Managers.Main;
+    using VUDK.Generic.Managers.Main.Interfaces.Casts;
     using ProjectSA.GameConstants;
+    using ProjectSA.Managers.GameManager;
+    using ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects;
 
-    public class UIAlchemicSignsShop : MonoBehaviour
+    public class UIAlchemicSignsShop : MonoBehaviour, ICastGameManager<PSAGameManager>
     {
         [Header("UI Elements")]
         [SerializeField]
@@ -18,9 +22,10 @@ namespace ProjectSA.UI.Crafting
         [Header("Signs Settings")]
         [SerializeField]
         private GameObject _uiSignPrefab;
-        [SerializeField]
-        private ElementIngredientData[] _craftableSigns;
-
+        
+        public PSAGameManager GameManager => MainManager.Ins.GameManager as PSAGameManager;
+        public List<ElementIngredientData> CraftableSigns => GameManager.ElementsShopManager.ElementIngredients;
+        
         private void Awake()
         {
             CloseCraftingPanel();
@@ -47,7 +52,7 @@ namespace ProjectSA.UI.Crafting
         {
             _grid.transform.ClearChildren();
             
-            foreach (ElementIngredientData sign in _craftableSigns)
+            foreach (ElementIngredientData sign in CraftableSigns)
             {
                 GameObject signGO = Instantiate(_uiSignPrefab, _grid.transform);
                 if (signGO.TryGetComponent(out UIAlchemicSign uiSign))

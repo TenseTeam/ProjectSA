@@ -1,5 +1,6 @@
 namespace ProjectSA.Managers.GameManager.ElementsIngredientsManager
 {
+    using System.Collections.Generic;
     using UnityEngine;
     using VUDK.Generic.Managers.Main;
     using VUDK.Features.Main.EventSystem;
@@ -11,6 +12,10 @@ namespace ProjectSA.Managers.GameManager.ElementsIngredientsManager
     [RequireComponent(typeof(ElementSlot))]
     public class ElementsShopManager : MonoBehaviour, ICastGameManager<PSAGameManager>
     {
+        [field: Header("Elements Shop Settings")]
+        [field: SerializeField]
+        public List<ElementIngredientData> ElementIngredients { get; private set; }
+        
         private ElementSlot _elementSlot;
         
         public PSAGameManager GameManager => MainManager.Ins.GameManager as PSAGameManager;

@@ -17,9 +17,9 @@ namespace ProjectSA.Gameplay.EnvironmentPuzzles.CrystalPuzzle
             _crystal.SetActive(false);
         }
 
-        public override void Interact()
+        protected override void OnInteract()
         {
-            base.Interact();
+            base.OnInteract();
 
             if (HasCrystal())
                 Resolve();

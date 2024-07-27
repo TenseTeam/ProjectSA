@@ -73,8 +73,10 @@
             DSEvents.DialogueStartHandler += StartDialogue;
             DSEvents.DialogueChoiceHandler += SelectChoice;
             DSEvents.DialogueInterruptHandler += InterruptDialogue;
-            _skipButton.onClick.AddListener(NextDialogueInput);
-            _dialogueCloseButton.onClick.AddListener(InterruptDialogue);
+            if (_skipButton)
+                _skipButton.onClick.AddListener(NextDialogueInput);
+            if (_dialogueCloseButton)
+                _dialogueCloseButton.onClick.AddListener(InterruptDialogue);
         }
 
         private void OnDisable()
@@ -82,8 +84,10 @@
             DSEvents.DialogueStartHandler -= StartDialogue;
             DSEvents.DialogueChoiceHandler -= SelectChoice;
             DSEvents.DialogueInterruptHandler -= InterruptDialogue;
-            _skipButton.onClick.RemoveListener(NextDialogueInput);
-            _dialogueCloseButton.onClick.RemoveListener(InterruptDialogue);
+            if (_skipButton)
+                _skipButton.onClick.RemoveListener(NextDialogueInput);
+            if (_dialogueCloseButton)
+                _dialogueCloseButton.onClick.RemoveListener(InterruptDialogue);
         }
 
         public void StartDialogue(object sender, OnStartDialogueEventArgs args)

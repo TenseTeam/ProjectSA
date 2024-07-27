@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PotionName: Third Potion
   PotionColor: {r: 0, g: 1, b: 0, a: 1}
+  DialogueToTrigger: {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00, type: 2}

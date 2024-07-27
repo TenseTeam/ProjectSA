@@ -1,5 +1,6 @@
 namespace ProjectSA.Gameplay.MatchRequestSystem
 {
+    using Player.Cauldron.EventArgs;
     using UnityEngine;
     using VUDK.Generic.Serializable;
     using VUDK.Features.Main.EventSystem;
@@ -17,17 +18,17 @@ namespace ProjectSA.Gameplay.MatchRequestSystem
         
         private void OnEnable()
         {
-            EventManager.Ins.AddListener<CraftedItemDataBase>(PSAEventKeys.OnRequestSuccess, OnRequestSuccess);
+            EventManager.Ins.AddListener<CauldronCraftEventArgs>(PSAEventKeys.OnRequestSuccess, OnRequestSuccess);
         }
 
         private void OnDisable()
         {
-            EventManager.Ins.RemoveListener<CraftedItemDataBase>(PSAEventKeys.OnRequestSuccess, OnRequestSuccess);
+            EventManager.Ins.RemoveListener<CauldronCraftEventArgs>(PSAEventKeys.OnRequestSuccess, OnRequestSuccess);
         }
 
-        private void OnRequestSuccess(CraftedItemDataBase requestedItem)
+        private void OnRequestSuccess(CauldronCraftEventArgs args)
         {
-            if (requestedItem is not CraftedPotionData potionData) return;
+            if (args.CraftedRecipe.Result is not CraftedPotionData potionData) return;
 
             Potion spawnedPotion = GameFactory.CreatePotionComboItem(potionData);
             

@@ -108,7 +108,7 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
             _isInteractionEnabled = false;
         }
 
-        public override void Interact()
+        protected override void OnInteract()
         {
             Debug.Log("Interacting with " + gameObject.name);
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnInteractInteractable, this);

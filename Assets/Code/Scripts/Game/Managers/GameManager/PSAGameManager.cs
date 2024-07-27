@@ -1,5 +1,6 @@
 namespace ProjectSA.Managers.GameManager
 {
+    using GameMachine.Data.Enums;
     using UnityEngine;
     using UnityEngine.InputSystem;
     using VUDK.Features.Main.EventSystem;
@@ -7,6 +8,7 @@ namespace ProjectSA.Managers.GameManager
     using VUDK.Generic.Managers.Main.Bases;
     using VUDK.Features.More.DialogueSystem;
     using VUDK.Features.More.DialogueSystem.Events;
+    using VUDK.Features.More.DialogueSystem.Components;
     using ProjectSA.Player;
     using ProjectSA.GameConstants;
     using ProjectSA.Managers.GameMachine;
@@ -23,30 +25,47 @@ namespace ProjectSA.Managers.GameManager
         [field: SerializeField]
         public RequestManager RequestManager { get; private set; }
         [field: SerializeField]
+        public GameTimersManager GameTimersManager { get; private set; }
+        [field: SerializeField]
+        public DamagerManager DamagerManager { get; private set; }
+        [field: SerializeField]
+        public GameoverManager GameoverManager { get; private set; }
+
+        [field: Header("Dialogues")]
+        [field: SerializeField]
         public DSDialogueManager DialogueManager { get; private set; }
-        
+        [field: SerializeField]
+        public DSDialogueTrigger FirstDialogueTrigger { get; private set; }
+        [field: SerializeField]
+        public DSDialogueListener FirstDialogueListener { get; private set; }
+
         public PlayerManager PlayerManager { get; private set; }
 
         private void Awake()
         {
             PlayerManager = FindObjectOfType<PlayerManager>();
-            
+
             if (PlayerManager == null)
                 Debug.LogError("PlayerManager not found in the scene.");
         }
 
         private void Start()
         {
+            EnablePlayerMovementInputs(); // Just in case
+            EnablePlayerInteractionInputs();
             GameMachine.Init();
-            GameMachine.Run();
+            FirstDialogueTrigger.Trigger(); // Triggers the intro dialogue, at its end start the game
         }
-        
+
         private void OnEnable()
         {
             DSEvents.OnEnable += OnDialogueStart;
             DSEvents.OnDisable += OnDialogueEnd;
+            FirstDialogueListener.OnEnd.AddListener(OnFirstDialogueEnd);
+            EventManager.Ins.AddListener(PSAEventKeys.OnPlayerDeath, OnPlayerDeath);
             EventManager.Ins.AddListener(PSAEventKeys.OnPlayerSeat, OnPlayerSeat);
             EventManager.Ins.AddListener(PSAEventKeys.OnPlayerUnseat, OnPlayerUnseat);
+            EventManager.Ins.AddListener(PSAEventKeys.OnGameover, OnGameover);
             InputsManager.Inputs.Dialogue.SkipSentence.performed += InputSkipSentence;
         }
 
@@ -54,46 +73,75 @@ namespace ProjectSA.Managers.GameManager
         {
             DSEvents.OnEnable -= OnDialogueStart;
             DSEvents.OnDisable -= OnDialogueEnd;
+            FirstDialogueListener.OnEnd.RemoveListener(OnFirstDialogueEnd);
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnPlayerDeath, OnPlayerDeath);
             EventManager.Ins.RemoveListener(PSAEventKeys.OnPlayerSeat, OnPlayerSeat);
             EventManager.Ins.RemoveListener(PSAEventKeys.OnPlayerUnseat, OnPlayerUnseat);
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnGameover, OnGameover);
             InputsManager.Inputs.Dialogue.SkipSentence.performed -= InputSkipSentence;
         }
-        
+
+        private void OnPlayerDeath()
+        {
+            GameMachine.ChangeState(GameStateKeys.GameoverState);
+        }
+
+        private void OnGameover()
+        {
+            DisablePlayerMovementInputs();
+            DisablePlayerInteractionInputs();
+        }
+
+        private void OnFirstDialogueEnd()
+        {
+            GameMachine.Run();
+        }
+
         private void OnPlayerSeat()
         {
-            DisablePlayerInputs();
+            DisablePlayerMovementInputs();
         }
-        
+
         private void OnPlayerUnseat()
         {
-            EnablePlayerInputs();
+            EnablePlayerMovementInputs();
         }
-        
+
         private void OnDialogueStart()
         {
-            DisablePlayerInputs();
+            DisablePlayerMovementInputs();
         }
 
         private void OnDialogueEnd()
         {
-            EnablePlayerInputs();
+            EnablePlayerMovementInputs();
         }
-        
-        private void EnablePlayerInputs()
+
+        private void InputSkipSentence(InputAction.CallbackContext obj)
+        {
+            DialogueManager.NextDialogueInput();
+        }
+
+        private void EnablePlayerMovementInputs()
         {
             InputsManager.Inputs.Camera.Look.Enable();
             InputsManager.Inputs.Player.Enable();
         }
-        
-        private void DisablePlayerInputs()
+
+        private void DisablePlayerMovementInputs()
         {
             InputsManager.Inputs.Camera.Look.Disable();
             InputsManager.Inputs.Player.Disable();
         }
-        
-        private void InputSkipSentence(InputAction.CallbackContext obj)
+
+        private void EnablePlayerInteractionInputs()
         {
-            DialogueManager.NextDialogueInput();
+            InputsManager.Inputs.Interaction.Enable();
+        }
+
+        private void DisablePlayerInteractionInputs()
+        {
+            InputsManager.Inputs.Interaction.Disable();
         }
     }
 }

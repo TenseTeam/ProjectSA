@@ -1,11 +1,11 @@
-namespace ProjectSA.Managers.GameMachine.States
+namespace ProjectSA.Managers.GameMachine.Data.Enums
 {
     public enum GameStateKeys
     {
         BeginGameState,
         RequestState,
-        RequestSatisfiedState,
         StunState,
-        GameoverState
+        GameoverState,
+        GameVictoryState
     }
 }

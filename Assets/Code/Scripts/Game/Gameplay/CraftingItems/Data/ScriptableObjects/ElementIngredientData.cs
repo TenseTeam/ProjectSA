@@ -12,6 +12,7 @@ namespace ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects
         public float InkCost;
         [Min(0f)]
         public float BloodCost;
+        public bool CanStun;
         public ScriptableKey IngredientPoolKey;
         public ScriptableKey UsableElementPoolKey;
     }

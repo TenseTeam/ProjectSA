@@ -17,9 +17,9 @@ namespace Code.Scripts.Game.Gameplay.EnvironmentPuzzles.SkullPuzzle
             _objectToReveal.SetActive(false);
         }
 
-        public override void Interact()
+        protected override void OnInteract()
         {
-            base.Interact();
+            base.OnInteract();
 
             if (HasLife())
                 Resolve();
@@ -31,7 +31,7 @@ namespace Code.Scripts.Game.Gameplay.EnvironmentPuzzles.SkullPuzzle
             PlayerHand.RemoveElementFromHand();
             OnPuzzleSolved?.Invoke();
             DisableInteraction();
-            EventManager.Ins.TriggerEvent(PSAEventKeys.OnCrystalPuzzleSolved);
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnSkullPuzzleSolved);
         }
 
         private bool HasLife()

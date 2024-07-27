@@ -13,6 +13,20 @@ namespace ProjectSA.Gameplay.CraftingItems.Elements
         public Pool RelatedPool { get; private set; }
         public ElementIngredientData IngredientData { get; private set; }
 
+        protected override void Awake()
+        {
+            base.Awake();
+            // In Awake, not in OnEnable, because you can spawn an element while is crafting
+            EventManager.Ins.AddListener(PSAEventKeys.OnCraftStarted, OnCraftStarted);
+            EventManager.Ins.AddListener(PSAEventKeys.OnCraftCompleted, OnCraftCompleted);
+        }
+
+        private void OnDestroy()
+        {
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnCraftStarted, OnCraftStarted);
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnCraftCompleted, OnCraftCompleted);
+        }
+
         public void Init(ElementIngredientData arg)
         {
             IngredientData = arg;
@@ -39,9 +53,9 @@ namespace ProjectSA.Gameplay.CraftingItems.Elements
             IngredientData = null;
         }
 
-        public override void Interact()
+        protected override void OnInteract()
         {
-            base.Interact();
+            base.OnInteract();
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnElementInteracted, IngredientData);
         }
 
@@ -51,6 +65,16 @@ namespace ProjectSA.Gameplay.CraftingItems.Elements
             
             if (IngredientData.UsableElementPoolKey) // If the element is usable is pickable
                 EventManager.Ins.TriggerEvent(PSAEventKeys.OnElementSecondaryInteracted, IngredientData);
+        }
+        
+        private void OnCraftCompleted()
+        {
+            EnableInteraction(false);
+        }
+        
+        private void OnCraftStarted()
+        {
+            DisableInteraction(true);
         }
     }
 }

@@ -2,6 +2,10 @@ namespace ProjectSA.GameConstants
 {
     public class PSAEventKeys
     {
+        // Gameover Events
+        public const string OnGameover = "OnGameover";
+        public const string OnGamevictory = "OnGamevictory";
+        
         // Interaction Events
         public const string OnInteractInteractable = "OnPlayerInteract";
         public const string OnSecondaryInteractInteractable = "OnPlayerSecondaryInteract";
@@ -37,6 +41,8 @@ namespace ProjectSA.GameConstants
         // Puzzle Events
         public const string OnCrystalPuzzleSolved = "OnCrystalPuzzleSolved";
         public const string OnChestPuzzleSolved = "OnChestPuzzleSolved";
+        public const string OnSkullPuzzleSolved = "OnSkullPuzzleSolved";
+        public const string OnCantInteractPuzzle = "OnCantInteractPuzzle";
         
         // Items Events
         public const string OnLightOn = "OnLightOn";
@@ -51,6 +57,7 @@ namespace ProjectSA.GameConstants
         public const string OnCraftCompleted = "OnCraftComplete";
         public const string OnCraftedRecipeSuccess = "OnCraftedRecipe";
         public const string OnCraftedRecipeFail = "OnFailedCraft";
+        public const string OnSecretItemCrafted = "OnSecretItemCrafted";
         
         // Match Request Events
         public const string OnRequestSuccess = "OnRequestSuccess";

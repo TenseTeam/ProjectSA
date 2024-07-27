@@ -1,8 +1,12 @@
 namespace ProjectSA.Managers.GameMachine.States
 {
     using System;
+    using Data.Enums;
+    using GameConstants;
     using VUDK.Patterns.StateMachine;
     using ProjectSA.Managers.GameMachine.Contexts;
+    using UnityEngine;
+    using VUDK.Features.Main.EventSystem;
 
     public class BeginGameState : State<PSAGameMachineContext>
     {
@@ -12,6 +16,8 @@ namespace ProjectSA.Managers.GameMachine.States
         
         public override void Enter()
         {
+            Debug.Log("<color=green>Begin Game State</color>");
+            ChangeState(GameStateKeys.RequestState);
         }
         
         public override void Exit()

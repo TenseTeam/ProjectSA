@@ -1,5 +1,7 @@
 namespace ProjectSA.Player.Cauldron
 {
+    using System.Collections.Generic;
+    using EventArgs;
     using UnityEngine;
     using VUDK.Features.CraftingSystem;
     using VUDK.Features.Main.EventSystem;
@@ -50,6 +52,7 @@ namespace ProjectSA.Player.Cauldron
         {
             Debug.Log("Clearing ingredients");
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnClearCraftIngredients);
+            _graphicsController.ClearIngredientsUI();
         }
 
         protected override void OnStartCraft()
@@ -71,7 +74,8 @@ namespace ProjectSA.Player.Cauldron
         protected override void OnSuccessCraft(RecipeData craftedRecipe)
         {
             Debug.Log("Crafted recipe: " + craftedRecipe.name);
-            EventManager.Ins.TriggerEvent(PSAEventKeys.OnCraftedRecipeSuccess, craftedRecipe);
+            CauldronCraftEventArgs args = new CauldronCraftEventArgs(craftedRecipe, new List<IngredientData>(CurrentIngredients));
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnCraftedRecipeSuccess, args);
         }
 
         protected override void OnFailCraft()

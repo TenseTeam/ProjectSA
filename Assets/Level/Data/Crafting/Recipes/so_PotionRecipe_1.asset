@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: so_PotionRecipe_1
   m_EditorClassIdentifier: 
   Ingredients:
-  - {fileID: 11400000, guid: 1fa751957236caf44bd1edc62c393743, type: 2}
+  - {fileID: 11400000, guid: c0a15a7cc135e674ca0d21001f17ca8e, type: 2}
+  - {fileID: 11400000, guid: 0439f8bf96cfc06449135ddc2c097f5f, type: 2}
+  - {fileID: 11400000, guid: 63a96508a68e6524bb7dec814f9fa1de, type: 2}
   Result: {fileID: 11400000, guid: 278400de0ae5c70439ba0fd48f11090e, type: 2}

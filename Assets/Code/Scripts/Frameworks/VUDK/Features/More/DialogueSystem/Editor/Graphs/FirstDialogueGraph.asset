@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23c1a0601ef5c84d970a0256acb4dc5, type: 3}
+  m_Name: FirstDialogueGraph
+  m_EditorClassIdentifier: 
+  FileName: FirstDialogue
+  Groups: []
+  Nodes:
+  - NodeID: 80b610c5-0cf4-4200-a3c7-28a3201d4ebf
+    GroupID: 
+    Position: {x: 92.8, y: -4}
+    Name: 0
+    DialogueText: FIRST DIALOGUE HEY
+    ActorData: {fileID: 11400000, guid: 2b191adc44039e943b5629acaba57410, type: 2}
+    DialogueAudioClip: {fileID: 0}
+    DialogueType: 0
+    Choices:
+    - Text: Next Dialogue
+      NodeID: b408b34f-1153-4c42-b4b1-3da706ee7cf9
+  - NodeID: b408b34f-1153-4c42-b4b1-3da706ee7cf9
+    GroupID: 
+    Position: {x: 556, y: -4}
+    Name: 1
+    DialogueText: YEP THIS IS IT
+    ActorData: {fileID: 11400000, guid: 2b191adc44039e943b5629acaba57410, type: 2}
+    DialogueAudioClip: {fileID: 0}
+    DialogueType: 0
+    Choices:
+    - Text: Next Dialogue
+      NodeID: 
+  OldGroupNames: []
+  OldUngroupedNodeNames:
+  - 0
+  - 1
+  OldGroupedNodeNames:
+    _dictionary: []

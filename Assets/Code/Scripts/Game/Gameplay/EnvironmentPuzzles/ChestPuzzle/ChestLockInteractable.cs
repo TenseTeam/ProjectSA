@@ -33,10 +33,9 @@ namespace ProjectSA.Gameplay.EnvironmentPuzzles.ChestPuzzle
             _acidTask.Process();
         }
 
-        public override void Interact()
+        protected override void OnInteract()
         {
-            base.Interact();
-
+            base.OnInteract();
             if (HasAcid())
                 Resolve();
         }
