@@ -1,13 +1,12 @@
 namespace ProjectSA.UI.Player
 {
-    using System;
-    using GameConstants;
-    using Gameplay.InteractSystem.Interactables.Base;
     using UnityEngine;
     using UnityEngine.UI;
     using TMPro;
     using UnityEngine.Serialization;
     using VUDK.Features.Main.EventSystem;
+    using ProjectSA.GameConstants;
+    using ProjectSA.Gameplay.InteractSystem.Interactables.Base;
 
     public class UIPlayerCrosshair : MonoBehaviour
     {
@@ -20,7 +19,7 @@ namespace ProjectSA.UI.Player
         private Image _crosshairImage;
         [SerializeField]
         private Sprite _crosshairSprite;
-        [FormerlySerializedAs("_crosshairHitSprite"),SerializeField]
+        [SerializeField]
         private Sprite _crosshairInteractSprite;
         
         private void Awake()
