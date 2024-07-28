@@ -20,6 +20,8 @@ namespace ProjectSA.Managers.GameMachine.States
 
         public override void Enter()
         {
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnRequestState);
+            
             Debug.Log("<color=green>Request State</color>");
             EventManager.Ins.AddListener(PSAEventKeys.OnRequestFail, OnRequestFail);
             EventManager.Ins.AddListener(PSAEventKeys.OnRequestTimerEnd, OnRequestTimerEnd);
@@ -58,13 +60,20 @@ namespace ProjectSA.Managers.GameMachine.States
             }
 
             if (HasStunElement(args.UsedIngredients))
+            {
                 ChangeState(GameStateKeys.StunState);
+                return;
+            }
+            
+            ChangeState(GameStateKeys.BeginGameState);
         }
         
         private void OnRequestFail()
         {
-            Context.GameManager.DamagerManager.DamagePlayer();
-            ChangeState(GameStateKeys.BeginGameState);
+            Debug.Log("<color=red>Request failed</color>");
+            string message = Context.GameStats.GameoverFailedRequestMessage;
+            Context.GameManager.GameoverManager.SetGameoverMessage(message);
+            ChangeState(GameStateKeys.GameoverState);
         }
         
         private void OnRequestTimerEnd()

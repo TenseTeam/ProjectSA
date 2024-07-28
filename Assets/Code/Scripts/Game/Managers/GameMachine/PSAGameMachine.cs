@@ -1,6 +1,5 @@
 namespace ProjectSA.Managers.GameMachine
 {
-    using UnityEngine;
     using VUDK.Generic.Managers.Main;
     using VUDK.Generic.Managers.Main.Bases;
     using VUDK.Generic.Managers.Main.Interfaces.Casts;
@@ -10,10 +9,11 @@ namespace ProjectSA.Managers.GameMachine
     using ProjectSA.Managers.GameMachine.Contexts;
     using ProjectSA.Managers.GameMachine.Data.Enums;
 
-    public class PSAGameMachine : GameMachineBase, ICastGameManager<PSAGameManager>
+    public class PSAGameMachine : GameMachineBase, ICastGameManager<PSAGameManager>, ICastGameStats<PSAGameStats>
     {
         public PSAGameMachineContext Context { get; private set; }
         public PSAGameManager GameManager => MainManager.Ins.GameManager as PSAGameManager;
+        public PSAGameStats GameStats => MainManager.Ins.GameStats as PSAGameStats;
 
         public override void Run()
         {
@@ -23,7 +23,7 @@ namespace ProjectSA.Managers.GameMachine
         public override void Init()
         {
             base.Init();
-            Context = MachineFactory.Create(GameManager);
+            Context = MachineFactory.Create(GameManager, GameStats);
 
             BeginGameState beginGameState = MachineFactory.Create<BeginGameState>(GameStateKeys.BeginGameState, this, Context);
             RequestState requestState = MachineFactory.Create<RequestState>(GameStateKeys.RequestState, this, Context);

@@ -1,14 +1,14 @@
 namespace ProjectSA.Patterns.Factories
 {
-    using Gameplay.UsableItems.Base;
-    using Player;
     using VUDK.Features.Main.ScriptableKeys;
     using VUDK.Generic.Managers.Main;
     using VUDK.Patterns.Pooling;
     using ProjectSA.Managers;
     using ProjectSA.Gameplay.CraftingItems.Elements;
     using ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects;
-    using ProjectSA.Gameplay.MatchRequestSystem.Potions;
+    using ProjectSA.Player;
+    using ProjectSA.Gameplay.CraftingItems;
+    using ProjectSA.Gameplay.UsableItems.Base;
 
     /// <summary>
     /// Responsible for creating game objects.

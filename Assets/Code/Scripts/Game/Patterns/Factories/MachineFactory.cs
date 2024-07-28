@@ -1,22 +1,22 @@
 namespace ProjectSA.Patterns.Factories
 {
-    using Managers.GameManager;
     using VUDK.Patterns.StateMachine;
-    using ProjectSA.Managers.GameMachine.Contexts;
+    using ProjectSA.Managers;
+    using ProjectSA.Managers.GameManager;
     using ProjectSA.Managers.GameMachine.States;
+    using ProjectSA.Managers.GameMachine.Contexts;
     using ProjectSA.Managers.GameMachine.Data.Enums;
-
-
+    
     /// <summary>
     /// Responsible for the creation of all necessary objects related to state machines for the game.
     /// </summary>
     public static class MachineFactory
     {
-        public static PSAGameMachineContext Create(PSAGameManager gameManager)
+        public static PSAGameMachineContext Create(PSAGameManager gameManager, PSAGameStats gameStats)
         {
-            return new PSAGameMachineContext(gameManager);
+            return new PSAGameMachineContext(gameManager, gameStats);
         }
-        
+
         /// <summary>
         /// Creates a state for the game state machine.
         /// </summary>

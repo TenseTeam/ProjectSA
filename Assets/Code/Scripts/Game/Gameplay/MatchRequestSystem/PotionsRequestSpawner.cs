@@ -1,14 +1,13 @@
 namespace ProjectSA.Gameplay.MatchRequestSystem
 {
-    using Player.Cauldron.EventArgs;
     using UnityEngine;
     using VUDK.Generic.Serializable;
     using VUDK.Features.Main.EventSystem;
-    using VUDK.Features.CraftingSystem.Data.ScriptableObjects;
     using ProjectSA.GameConstants;
     using ProjectSA.Patterns.Factories;
+    using ProjectSA.Gameplay.CraftingItems;
+    using ProjectSA.Player.Cauldron.EventArgs;
     using ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects;
-    using ProjectSA.Gameplay.MatchRequestSystem.Potions;
 
     public class PotionsRequestSpawner : MonoBehaviour
     {

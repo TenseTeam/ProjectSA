@@ -29,11 +29,13 @@ namespace ProjectSA.Gameplay.MatchRequestSystem
         private void OnEnable()
         {
             EventManager.Ins.AddListener<CauldronCraftEventArgs>(PSAEventKeys.OnCraftedRecipeSuccess, OnCraftedRecipe);
+            EventManager.Ins.AddListener(PSAEventKeys.OnCraftedRecipeFail, RequestFail);
         }
 
         private void OnDisable()
         {
             EventManager.Ins.RemoveListener<CauldronCraftEventArgs>(PSAEventKeys.OnCraftedRecipeSuccess, OnCraftedRecipe);
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnCraftedRecipeFail, RequestFail);
         }
         
         private void OnCraftedRecipe(CauldronCraftEventArgs args)
@@ -48,7 +50,10 @@ namespace ProjectSA.Gameplay.MatchRequestSystem
             {
                 Debug.Log("Secret item crafted");
                 EventManager.Ins.TriggerEvent(PSAEventKeys.OnSecretItemCrafted);
+                EventManager.Ins.TriggerEvent(PSAEventKeys.OnRequestSuccess, _currentCauldronArgs);
                 IsSecretItemCrafted = true;
+                _currentCauldronArgs = null;
+                return;
             }
             
             if(_unsatisfiedItems.Contains(recipeData.Result))

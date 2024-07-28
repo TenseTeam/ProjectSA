@@ -18,7 +18,7 @@ namespace ProjectSA.Gameplay.UsableItems.LightItem
         
         private DelayTask _lightDurationTask;
         
-        public float LightRemainingTime => _lightDuration - _lightDurationTask.ElapsedTime;
+        public float LightRemainingTime => _lightDurationTask.RemainingTime;
 
         private void Awake()
         {
@@ -45,14 +45,14 @@ namespace ProjectSA.Gameplay.UsableItems.LightItem
         private void Update()
         {
             if (_lightDurationTask.Process())
-                EventManager.Ins.TriggerEvent(PSAEventKeys.OnLightConsuming, LightRemainingTime);
+                EventManager.Ins.TriggerEvent(PSAEventKeys.OnLightConsumingTick, LightRemainingTime);
         }
 
         protected override void OnUse()
         {
             _lightDurationTask.Resume();
             _lightRevealer.gameObject.SetActive(true);
-            EventManager.Ins.TriggerEvent(PSAEventKeys.OnLightOn);
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnLightOn, _lightDuration);
         }
         
         private void StopUse()
@@ -69,8 +69,8 @@ namespace ProjectSA.Gameplay.UsableItems.LightItem
         
         private void OnLightFullyConsumed()
         { 
+            StopUse();
             PlayerHand.RemoveElementFromHand();
-            EventManager.Ins.TriggerEvent(PSAEventKeys.OnLightOff);
         }
     }
 }

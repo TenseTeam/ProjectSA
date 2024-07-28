@@ -963,6 +963,11 @@ MonoBehaviour:
   _canvasScaler: {fileID: 0}
   _gameScaleTime: 1
   _gameFPS: 60
+  <GameoverDeathMessage>k__BackingField: The alchemist bled to death.
+  <GameoverFailedRequestMessage>k__BackingField: The angry shadow killed the alchemist
+    disgusted by the taste of the delivered potion.
+  <GameVictoryMessage>k__BackingField: The shadow was cast out of the human world,
+    returning as one being with the alchemist, who, however, felt a little more wicked.
 --- !u!1 &3433853223972676531
 GameObject:
   m_ObjectHideFlags: 0

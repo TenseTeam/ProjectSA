@@ -28,29 +28,32 @@ namespace ProjectSA.Managers.GameManager.ElementsIngredientsManager
 
         private void OnEnable()
         {
-            EventManager.Ins.AddListener<ElementIngredientData>(PSAEventKeys.OnClickedBuyIngredient, TrySpawnSign);
+            EventManager.Ins.AddListener<ElementIngredientData>(PSAEventKeys.OnClickedBuyIngredientWithBlood, TrySpawnSignWithBlood);
+            EventManager.Ins.AddListener<ElementIngredientData>(PSAEventKeys.OnClickedBuyIngredientWithInk, TrySpawnSignWithInk);
         }
 
         private void OnDisable()
         {
-            EventManager.Ins.RemoveListener<ElementIngredientData>(PSAEventKeys.OnClickedBuyIngredient, TrySpawnSign);
+            EventManager.Ins.RemoveListener<ElementIngredientData>(PSAEventKeys.OnClickedBuyIngredientWithBlood, TrySpawnSignWithBlood);
+            EventManager.Ins.RemoveListener<ElementIngredientData>(PSAEventKeys.OnClickedBuyIngredientWithInk, TrySpawnSignWithInk);
         }
         
-        private void TrySpawnSign(ElementIngredientData data)
+        private void TrySpawnSignWithBlood(ElementIngredientData data)
         {
-            if (TryBuySign(data.InkCost, data.BloodCost))
+            if (PlayerResources.TryConsumeBlood(data.BloodCost))
             {
                 EventManager.Ins.TriggerEvent(PSAEventKeys.OnBoughtIngredient, data);
                 SpawnSign(data);
             }
         }
         
-        private bool TryBuySign(float inkCost, float bloodCost)
+        private void TrySpawnSignWithInk(ElementIngredientData data)
         {
-            if (!PlayerResources.TryConsumeInk(inkCost))
-                return PlayerResources.TryConsumeBlood(bloodCost);
-
-            return true;
+            if (PlayerResources.TryConsumeInk(data.InkCost))
+            {
+                EventManager.Ins.TriggerEvent(PSAEventKeys.OnBoughtIngredient, data);
+                SpawnSign(data);
+            }
         }
         
         private void SpawnSign(ElementIngredientData data)

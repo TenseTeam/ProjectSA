@@ -1,5 +1,6 @@
 namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
 {
+    using System;
     using UnityEngine;
     using UnityEngine.InputSystem;
     using VUDK.Features.Main.EventSystem;
@@ -26,6 +27,15 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
             TryGetComponent(out GameInteractableGraphicsController graphicsController);
             GraphicsController = graphicsController;
             GraphicsController.CreateHighlightMaterial();
+            
+            EventManager.Ins.AddListener(PSAEventKeys.OnOpenElementsPanel, OnOpenElementsPanel);
+            EventManager.Ins.AddListener(PSAEventKeys.OnCloseElementsPanel, OnCloseElementsPanel);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnOpenElementsPanel, OnOpenElementsPanel);
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnCloseElementsPanel, OnCloseElementsPanel);
         }
 
         protected virtual void OnEnable()
@@ -130,6 +140,16 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
         {
             Disable();
             _canBeSecondaryInteracted = false;
+        }
+        
+        private void OnOpenElementsPanel()
+        {
+            DisableInteraction();
+        }
+        
+        private void OnCloseElementsPanel()
+        {
+            EnableInteraction(false);
         }
     }
 }

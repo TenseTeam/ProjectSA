@@ -21,8 +21,9 @@ namespace ProjectSA.Gameplay.CraftingItems.Elements
             EventManager.Ins.AddListener(PSAEventKeys.OnCraftCompleted, OnCraftCompleted);
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             EventManager.Ins.RemoveListener(PSAEventKeys.OnCraftStarted, OnCraftStarted);
             EventManager.Ins.RemoveListener(PSAEventKeys.OnCraftCompleted, OnCraftCompleted);
         }

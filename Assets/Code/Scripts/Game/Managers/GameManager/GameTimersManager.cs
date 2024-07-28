@@ -30,8 +30,8 @@ namespace ProjectSA.Managers.GameManager
             if (_requestDelayTask.Process())
                 EventManager.Ins.TriggerEvent(PSAEventKeys.OnRequestTimerTick, _requestDelayTask.RemainingTime);
                 
-            if(_stunDelayTask.Process())
-                EventManager.Ins.TriggerEvent(PSAEventKeys.OnStunTimerTick, _requestDelayTask.RemainingTime);
+            if (_stunDelayTask.Process())
+                EventManager.Ins.TriggerEvent(PSAEventKeys.OnStunTimerTick, _stunDelayTask.RemainingTime);
         }
 
         public void StartRequestTimer()

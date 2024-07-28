@@ -10,8 +10,9 @@ namespace ProjectSA.UI.Crafting
     using ProjectSA.GameConstants;
     using ProjectSA.Managers.GameManager;
     using ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects;
+    using UnityEngine.Serialization;
 
-    public class UIAlchemicSignsShop : MonoBehaviour, ICastGameManager<PSAGameManager>
+    public class UIElementsIngredientsShop : MonoBehaviour, ICastGameManager<PSAGameManager>
     {
         [Header("UI Elements")]
         [SerializeField]
@@ -19,9 +20,9 @@ namespace ProjectSA.UI.Crafting
         [SerializeField]
         private GridLayoutGroup _grid;
         
-        [Header("Signs Settings")]
+        [FormerlySerializedAs("_uiSignPrefab"),Header("Signs Settings")]
         [SerializeField]
-        private GameObject _uiSignPrefab;
+        private GameObject _uiElementPrefab;
         
         public PSAGameManager GameManager => MainManager.Ins.GameManager as PSAGameManager;
         public List<ElementIngredientData> CraftableSigns => GameManager.ElementsShopManager.ElementIngredients;
@@ -54,8 +55,8 @@ namespace ProjectSA.UI.Crafting
             
             foreach (ElementIngredientData sign in CraftableSigns)
             {
-                GameObject signGO = Instantiate(_uiSignPrefab, _grid.transform);
-                if (signGO.TryGetComponent(out UIAlchemicSign uiSign))
+                GameObject signGO = Instantiate(_uiElementPrefab, _grid.transform);
+                if (signGO.TryGetComponent(out UIElementIngredient uiSign))
                     uiSign.Init(sign);
             }
         }
@@ -63,11 +64,13 @@ namespace ProjectSA.UI.Crafting
         public void OpenCraftingPanel()
         {
             _craftingPanel.SetActive(true);
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnOpenElementsPanel);
         }
         
         public void CloseCraftingPanel()
         {
             _craftingPanel.SetActive(false);
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnCloseElementsPanel);
         }
     }
 }

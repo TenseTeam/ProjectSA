@@ -17,6 +17,9 @@ namespace ProjectSA.Managers.GameMachine.States
 
         public override void Enter()
         {
+            Context.GameManager.DialogueManager.InterruptDialogue(); // Interrupts the dialogue if it's playing
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnStunState);
+            
             Debug.Log("<color=green>Stun State</color>");
             EventManager.Ins.AddListener(PSAEventKeys.OnStunTimerEnd, OnStunTimerEnd);
             Context.GameManager.GameTimersManager.StartStunTimer();

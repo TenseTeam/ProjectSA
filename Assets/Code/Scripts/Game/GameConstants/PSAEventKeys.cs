@@ -24,8 +24,6 @@ namespace ProjectSA.GameConstants
         public const string OnElementRemovedFromHand = "OnElementRemovedFromHand";
         
         // Player Resources Events
-        public const string OnInkInit = "OnInkInit";
-        public const string OnBloodInit = "OnBloodInit";
         public const string OnInkConsumed = "OnInkConsumed";
         public const string OnBloodConsumed = "OnBloodConsumed";
         public const string OnBoughtIngredient = "OnBoughtIngredient";
@@ -47,7 +45,7 @@ namespace ProjectSA.GameConstants
         // Items Events
         public const string OnLightOn = "OnLightOn";
         public const string OnLightOff = "OnLightOff";
-        public const string OnLightConsuming = "OnLightConsuming";
+        public const string OnLightConsumingTick = "OnLightConsuming";
         
         // Crafting Events
         public const string OnAddedCraftIngredient = "OnAddedCraftIngredient";
@@ -65,6 +63,13 @@ namespace ProjectSA.GameConstants
         public const string OnAllRequestsSatisfied = "OnAllRequestsSatisfied";
         
         // UI Events
-        public const string OnClickedBuyIngredient = "OnClickedBuyIngredient";
+        public const string OnOpenElementsPanel = "OnOpenShopPanel";
+        public const string OnCloseElementsPanel = "OnCloseShopPanel";
+        public const string OnClickedBuyIngredientWithInk = "OnClickedBuyIngredientWithInk";
+        public const string OnClickedBuyIngredientWithBlood = "OnClickedBuyIngredientWithBlood";
+        
+        // State Machine Events
+        public const string OnRequestState = "OnRequestState";
+        public const string OnStunState = "OnStunState";
     }
 }

@@ -1,21 +1,23 @@
 namespace ProjectSA.Managers.GameManager
 {
-    using GameMachine.Data.Enums;
     using UnityEngine;
     using UnityEngine.InputSystem;
     using VUDK.Features.Main.EventSystem;
     using VUDK.Features.Main.InputSystem;
+    using VUDK.Generic.Managers.Main;
     using VUDK.Generic.Managers.Main.Bases;
     using VUDK.Features.More.DialogueSystem;
     using VUDK.Features.More.DialogueSystem.Events;
+    using VUDK.Generic.Managers.Main.Interfaces.Casts;
     using VUDK.Features.More.DialogueSystem.Components;
     using ProjectSA.Player;
     using ProjectSA.GameConstants;
     using ProjectSA.Managers.GameMachine;
     using ProjectSA.Gameplay.MatchRequestSystem;
+    using ProjectSA.Managers.GameMachine.Data.Enums;
     using ProjectSA.Managers.GameManager.ElementsIngredientsManager;
-
-    public class PSAGameManager : GameManagerBase
+    
+    public class PSAGameManager : GameManagerBase, ICastGameStats<PSAGameStats>
     {
         [field: Header("Game Managers")]
         [field: SerializeField]
@@ -40,6 +42,9 @@ namespace ProjectSA.Managers.GameManager
         public DSDialogueListener FirstDialogueListener { get; private set; }
 
         public PlayerManager PlayerManager { get; private set; }
+        public PSAGameStats GameStats => MainManager.Ins.GameStats as PSAGameStats;
+        
+        private bool _isPlayerSeated = false;
 
         private void Awake()
         {
@@ -65,7 +70,8 @@ namespace ProjectSA.Managers.GameManager
             EventManager.Ins.AddListener(PSAEventKeys.OnPlayerDeath, OnPlayerDeath);
             EventManager.Ins.AddListener(PSAEventKeys.OnPlayerSeat, OnPlayerSeat);
             EventManager.Ins.AddListener(PSAEventKeys.OnPlayerUnseat, OnPlayerUnseat);
-            EventManager.Ins.AddListener(PSAEventKeys.OnGameover, OnGameover);
+            EventManager.Ins.AddListener<string>(PSAEventKeys.OnGameover, OnGameover);
+            EventManager.Ins.AddListener<string>(PSAEventKeys.OnGamevictory, OnGamevictory);
             InputsManager.Inputs.Dialogue.SkipSentence.performed += InputSkipSentence;
         }
 
@@ -77,21 +83,30 @@ namespace ProjectSA.Managers.GameManager
             EventManager.Ins.RemoveListener(PSAEventKeys.OnPlayerDeath, OnPlayerDeath);
             EventManager.Ins.RemoveListener(PSAEventKeys.OnPlayerSeat, OnPlayerSeat);
             EventManager.Ins.RemoveListener(PSAEventKeys.OnPlayerUnseat, OnPlayerUnseat);
-            EventManager.Ins.RemoveListener(PSAEventKeys.OnGameover, OnGameover);
+            EventManager.Ins.RemoveListener<string>(PSAEventKeys.OnGameover, OnGameover);
+            EventManager.Ins.RemoveListener<string>(PSAEventKeys.OnGamevictory, OnGamevictory);
             InputsManager.Inputs.Dialogue.SkipSentence.performed -= InputSkipSentence;
         }
 
         private void OnPlayerDeath()
         {
+            string message = GameStats.GameoverDeathMessage;
+            GameoverManager.SetGameoverMessage(message);
             GameMachine.ChangeState(GameStateKeys.GameoverState);
         }
 
-        private void OnGameover()
+        private void OnGameover(string message)
         {
             DisablePlayerMovementInputs();
             DisablePlayerInteractionInputs();
         }
 
+        private void OnGamevictory(string message)
+        {
+            DisablePlayerMovementInputs();
+            DisablePlayerInteractionInputs();
+        }
+        
         private void OnFirstDialogueEnd()
         {
             GameMachine.Run();
@@ -99,22 +114,28 @@ namespace ProjectSA.Managers.GameManager
 
         private void OnPlayerSeat()
         {
+            _isPlayerSeated = true;
             DisablePlayerMovementInputs();
         }
 
         private void OnPlayerUnseat()
         {
+            _isPlayerSeated = false;
             EnablePlayerMovementInputs();
         }
 
         private void OnDialogueStart()
         {
+            DisablePlayerInteractionInputs();
             DisablePlayerMovementInputs();
         }
 
         private void OnDialogueEnd()
         {
-            EnablePlayerMovementInputs();
+            EnablePlayerInteractionInputs();
+            
+            if (!_isPlayerSeated)
+                EnablePlayerMovementInputs();
         }
 
         private void InputSkipSentence(InputAction.CallbackContext obj)
