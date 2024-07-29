@@ -13,7 +13,7 @@
     {
         [SerializeField, Header("Main Sources")]
         private AudioSource _mainMusic;
-        [field: SerializeField]
+        [SerializeField]
         private AudioSource _mainEffect;
 
         [SerializeField, Header("Mixer Groups")]

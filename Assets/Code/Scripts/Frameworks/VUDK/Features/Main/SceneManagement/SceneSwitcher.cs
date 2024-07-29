@@ -25,6 +25,15 @@ namespace VUDK.Features.Main.SceneManagement
         {
             SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
         }
+        
+        /// <summary>
+        /// Switches to a scene.
+        /// </summary>
+        /// <param name="scenePath">Path of the scene to load.</param>
+        public void ChangeScene(string scenePath)
+        {
+            SceneManager.LoadScene(scenePath, LoadSceneMode.Single);
+        }
 
         /// <summary>
         /// Waits for specified seconds and then switches to a scene.

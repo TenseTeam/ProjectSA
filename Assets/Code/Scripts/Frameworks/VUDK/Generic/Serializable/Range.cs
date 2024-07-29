@@ -28,10 +28,10 @@
             Min = min.CompareTo(max) < 0 ? min : max;
         }
 
-        ///// <summary>
-        ///// Gets a random T number.
-        ///// </summary>
-        ///// <returns>Random number of type T.</returns>
+        // <summary>
+        // Gets a random T number.
+        // </summary>
+        // <returns>Random number of type T.</returns>
         public T Random()
         {
             float randomValue = UnityEngine.Random.Range(Convert.ToSingle(Min), Convert.ToSingle(Max));

@@ -52,10 +52,18 @@ namespace ProjectSA.Managers.GameMachine.States
             if (Context.GameManager.RequestManager.AreAllRequestsSatisfied)
             {
                 if (Context.GameManager.RequestManager.IsSecretItemCrafted)
+                {
+                    string message = Context.GameStats.GameVictoryMessage;
+                    Context.GameManager.GameoverManager.SetGamevictoryMessage(message);
                     ChangeState(GameStateKeys.GameVictoryState);
+                }
                 else
+                {
+                    string message = Context.GameStats.GameoverCraftedAllPotionsMessage;
+                    Context.GameManager.GameoverManager.SetGameoverMessage(message);
                     ChangeState(GameStateKeys.GameoverState);
-                
+                }
+
                 return;
             }
 

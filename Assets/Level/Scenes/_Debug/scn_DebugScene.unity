@@ -1942,6 +1942,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84b780f5b3d45d9909d24cf77ee63bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _liquidMeshRenderer: {fileID: 0}
+  _fillRange:
+    <Min>k__BackingField: 0
+    <Max>k__BackingField: 0
 --- !u!114 &1105671883 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4872204218138725265, guid: b5204fb14acb2594dba58d84e997763e,
@@ -2876,18 +2880,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e737906737ee75247838671c0ce243cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1737752568 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7101542804291652691, guid: b5cf83edd26668d448423c2b8b88a83c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5302599516323878049}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e0c835aac004d5cb707824fcd122fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1913568917
@@ -4142,11 +4134,6 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1572053890}
-    - target: {fileID: 2496458095357706623, guid: fb500ff4092d5314f8b43abb54b89667,
-        type: 3}
-      propertyPath: _interactLayer.m_Bits
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3930697573390429473, guid: fb500ff4092d5314f8b43abb54b89667,
         type: 3}
       propertyPath: m_Name
@@ -4202,16 +4189,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6925730401906939317, guid: fb500ff4092d5314f8b43abb54b89667,
-        type: 3}
-      propertyPath: <MaxBloodAmount>k__BackingField
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8648660095224413357, guid: fb500ff4092d5314f8b43abb54b89667,
-        type: 3}
-      propertyPath: <PlayerHand>k__BackingField
-      value: 
-      objectReference: {fileID: 1737752568}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4485,7 +4462,7 @@ PrefabInstance:
     - target: {fileID: 9222616412905495054, guid: d8e099073c87b9f42a9d3f179006a702,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.07
+      value: 1.009
       objectReference: {fileID: 0}
     - target: {fileID: 9222616412905495054, guid: d8e099073c87b9f42a9d3f179006a702,
         type: 3}
@@ -4713,6 +4690,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84b780f5b3d45d9909d24cf77ee63bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _liquidMeshRenderer: {fileID: 0}
+  _fillRange:
+    <Min>k__BackingField: 0
+    <Max>k__BackingField: 0
 --- !u!114 &8578118657331492928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4725,6 +4706,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84b780f5b3d45d9909d24cf77ee63bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _liquidMeshRenderer: {fileID: 0}
+  _fillRange:
+    <Min>k__BackingField: 0
+    <Max>k__BackingField: 0
 --- !u!114 &8578118657546166479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4737,6 +4722,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84b780f5b3d45d9909d24cf77ee63bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _liquidMeshRenderer: {fileID: 0}
+  _fillRange:
+    <Min>k__BackingField: 0
+    <Max>k__BackingField: 0
 --- !u!4 &8838780785701650760 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9222616412905495054, guid: d8e099073c87b9f42a9d3f179006a702,

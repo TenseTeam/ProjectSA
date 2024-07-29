@@ -256,6 +256,9 @@ MonoBehaviour:
     <Duration>k__BackingField: 0
   _menuScene: 
   _gameScene: Assets/Level/Scenes/_Debug/scn_DebugScene.unity
+  _gameoverScene: Assets/Level/Scenes/scn_Gameover.unity
+  _gamevictoryScene: Assets/Level/Scenes/scn_Gamevictory.unity
+  _creditsScene: 
 --- !u!1 &2102568365927928251
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,9 +966,12 @@ MonoBehaviour:
   _canvasScaler: {fileID: 0}
   _gameScaleTime: 1
   _gameFPS: 60
-  <GameoverDeathMessage>k__BackingField: The alchemist bled to death.
+  <GameoverDeathMessage>k__BackingField: The alchemist, having exhausted his blood,
+    succumbed to his tragic end.
   <GameoverFailedRequestMessage>k__BackingField: The angry shadow killed the alchemist
     disgusted by the taste of the delivered potion.
+  <GameoverCraftedAllPotionsMessage>k__BackingField: The shadow, now empowered by
+    all the potions, has slain the alchemist, rendering him useless.
   <GameVictoryMessage>k__BackingField: The shadow was cast out of the human world,
     returning as one being with the alchemist, who, however, felt a little more wicked.
 --- !u!1 &3433853223972676531
@@ -1337,6 +1343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 142744777085590118}
   - component: {fileID: 6279349001560056233}
+  - component: {fileID: 1530679610793101980}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -1369,6 +1376,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 811487e6e5fa42d9b60a76705c061555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1530679610793101980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5772084222261235896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad30fec16b684d4ab8bd242a415f5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5839644188322652238
