@@ -19,8 +19,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] oneShotShadowClips;
     public AudioClip ambienceClip;
 
-    [Range(0, 100)] public float voicePlayChance = 30f; 
+    [Range(0, 100)] public float voicePlayChance = 30f;
     [Range(0, 100)] public float shadowPlayChance = 30f;
+    public float minInterval = 5f;
+    public float maxInterval = 10f;
 
     void Awake()
     {
@@ -35,23 +37,19 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    
-
     void Start()
     {
         PlayBackgroundMusic();
         PlayAmbience();
-        TryPlayRandomOneShot();
-        TryPlayShadowOneShot();
-        //oneShotAmbienceSource.clip = oneShotAmbienceClips[Random.Range(0, oneShotAmbienceClips.Length)];
-        //oneShotAmbienceSource.PlayOneShot(oneShotAmbienceSource.clip);
+        StartCoroutine(PlayRandomVoiceCoroutine());
+        StartCoroutine(PlayShadowVoiceCoroutine());
     }
 
     public void PlayBackgroundMusic()
     {
         if (backgroundMusicClip != null)
         {
-            backgroundMusicSource.clip = backgroundMusicClip; 
+            backgroundMusicSource.clip = backgroundMusicClip;
             backgroundMusicSource.loop = true;
             backgroundMusicSource.Play();
         }
@@ -72,20 +70,42 @@ public class AudioManager : MonoBehaviour
         if (oneShotVoiceClips.Length > 0)
         {
             int randomIndex = Random.Range(0, oneShotVoiceClips.Length);
-            oneShotVoiceSource.clip = oneShotVoiceClips[randomIndex];
-            oneShotVoiceSource.loop = true;
-            oneShotVoiceSource.Play();
+            AudioClip clip = oneShotVoiceClips[randomIndex];
+            if (clip != null)
+            {
+                oneShotVoiceSource.PlayOneShot(clip);
+            }
         }
     }
 
     public void PlayShadowOneShot()
     {
-        if (oneShotVoiceClips.Length > 0)
+        if (oneShotShadowClips.Length > 0)
         {
             int randomIndex = Random.Range(0, oneShotShadowClips.Length);
-            oneShotShadowSource.clip = oneShotShadowClips[randomIndex];
-            oneShotShadowSource.loop = true;
-            oneShotShadowSource.Play();
+            AudioClip clip = oneShotShadowClips[randomIndex];
+            if (clip != null)
+            {
+                oneShotShadowSource.PlayOneShot(clip);
+            }
+        }
+    }
+
+    IEnumerator PlayRandomVoiceCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
+            TryPlayRandomOneShot();
+        }
+    }
+
+    IEnumerator PlayShadowVoiceCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
+            TryPlayShadowOneShot();
         }
     }
 
