@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8648660095224413357}
   - component: {fileID: 6916002072285240025}
   - component: {fileID: 2496458095357706623}
+  - component: {fileID: 6925730401906939317}
   m_Layer: 6
   m_Name: pf_PlayerManager
   m_TagString: Untagged
@@ -138,3 +139,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _interactDistance: 2
+--- !u!114 &6925730401906939317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3930697573390429473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84953d23384d4bd7b3b9179123f47eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inkAmount: 200
+  _bloodAmount: 200

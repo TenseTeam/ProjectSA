@@ -3,9 +3,12 @@ namespace ProjectSA.Patterns.Factories
     using VUDK.Features.Main.ScriptableKeys;
     using VUDK.Generic.Managers.Main;
     using VUDK.Patterns.Pooling;
-    using ProjectSA.Gameplay.Items;
     using ProjectSA.Managers;
-    using ProjectSA.Gameplay.Items.Data.ScriptableObjects;
+    using ProjectSA.Gameplay.CraftingItems.Elements;
+    using ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects;
+    using ProjectSA.Player;
+    using ProjectSA.Gameplay.CraftingItems;
+    using ProjectSA.Gameplay.UsableItems.Base;
 
     /// <summary>
     /// Responsible for creating game objects.
@@ -21,13 +24,21 @@ namespace ProjectSA.Patterns.Factories
             potion.Init(potionData);
             return potion;
         }
+        
+        public static UsableItemBase CreateUsableItem(ElementIngredientData elementData, PlayerHand playerHand)
+        {
+            ScriptableKey poolKey = elementData.UsableElementPoolKey;
+            UsableItemBase usableItem = PoolsManager.Pools[poolKey].Get<UsableItemBase>();
+            usableItem.Init(playerHand, elementData);
+            return usableItem;
+        }
 
-        public static AlchemicSign CreateAlchemicSign(AlchemicSignIngredientData ingredientData)
+        public static ElementIngredientInteractable CreateElementIngredient(ElementIngredientData ingredientData)
         {
             ScriptableKey poolKey = ingredientData.IngredientPoolKey;
-            AlchemicSign alchemicSign = PoolsManager.Pools[poolKey].Get<AlchemicSign>();
-            alchemicSign.Init(ingredientData);
-            return alchemicSign;
+            ElementIngredientInteractable elementIngredientInteractable = PoolsManager.Pools[poolKey].Get<ElementIngredientInteractable>();
+            elementIngredientInteractable.Init(ingredientData);
+            return elementIngredientInteractable;
         }
     }
 }

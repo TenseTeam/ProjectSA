@@ -9,6 +9,11 @@ namespace VUDK.Features.Main.InteractSystem
 
         public abstract void Enable();
 
-        public abstract void Interact();
+        public virtual void Interact()
+        {
+            OnInteract();
+        }
+        
+        protected abstract void OnInteract();
     }
 }

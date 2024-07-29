@@ -1,7 +1,6 @@
 namespace VUDK.Features.CraftingSystem
 {
     using System.Collections.Generic;
-    using System.Linq;
     using UnityEngine;
     using VUDK.Generic.Serializable;
     using VUDK.Features.CraftingSystem.Data.ScriptableObjects;
@@ -12,10 +11,14 @@ namespace VUDK.Features.CraftingSystem
         [SerializeField]
         private CookbookData _cookbook;
         [SerializeField]
+        private bool _useExactIngredients;
+        [SerializeField]
         private DelayTask _craftTask;
 
-        private List<IngredientData> _currentIngredients = new List<IngredientData>();
+        protected List<IngredientData> CurrentIngredients = new List<IngredientData>();
 
+        public bool IsCrafting => _craftTask.IsRunning;
+        
         protected virtual void OnEnable()
         {
             _craftTask.OnTaskCompleted += CheckCraft;
@@ -33,24 +36,32 @@ namespace VUDK.Features.CraftingSystem
 
         public void AddIngredient(IngredientData ingredient)
         {
-            _currentIngredients.Add(ingredient);
+            if (IsCrafting) return;
+            
+            CurrentIngredients.Add(ingredient);
             OnAddedIngredient(ingredient);
         }
 
         public void RemoveIngredient(IngredientData ingredient)
         {
-            _currentIngredients.Remove(ingredient);
+            if (IsCrafting) return;
+            
+            CurrentIngredients.Remove(ingredient);
             OnRemovedIngredient(ingredient);
         }
 
         public void ClearIngredients()
         {
-            _currentIngredients.Clear();
+            if (IsCrafting) return;
+            
+            CurrentIngredients.Clear();
             OnClearIngredients();
         }
 
         public void StartCraft()
         {
+            if (IsCrafting || CurrentIngredients.Count == 0) return;
+            
             _craftTask.Start();
             OnStartCraft();
         }
@@ -62,6 +73,8 @@ namespace VUDK.Features.CraftingSystem
         protected abstract void OnClearIngredients();
 
         protected abstract void OnStartCraft();
+        
+        protected abstract void OnCraftCompleted();
 
         protected abstract void OnSuccessCraft(RecipeData craftedRecipe);
 
@@ -73,32 +86,33 @@ namespace VUDK.Features.CraftingSystem
                 SuccessCraft(craftedRecipe);
             else
                 FailCraft();
+            
+            OnCraftCompleted();
         }
 
         private void SuccessCraft(RecipeData craftedRecipe)
         {
-            Debug.Log($"Crafted recipe {craftedRecipe.name}...");
-            ClearIngredients();
             OnSuccessCraft(craftedRecipe);
+            ClearIngredients();
         }
 
         private void FailCraft()
         {
-            Debug.Log("Failed to craft recipe...");
-            ClearIngredients();
             OnFailCraft();
+            ClearIngredients();
         }
 
         private bool TryGetIngredientsResult(out RecipeData craftedRecipe)
         {
             foreach (RecipeData recipe in _cookbook.Recipes)
             {
-                if (recipe.Ingredients.Length != _currentIngredients.Count) continue;
+                if (_useExactIngredients)
+                    if (recipe.Ingredients.Length != CurrentIngredients.Count) continue;
 
                 bool allIngredientsMatch = true;
-                foreach (IngredientData ingredient in _currentIngredients)
+                foreach (IngredientData ingredient in recipe.Ingredients)
                 {
-                    if (!recipe.Ingredients.Contains(ingredient))
+                    if (!CurrentIngredients.Contains(ingredient))
                     {
                         allIngredientsMatch = false;
                         break;

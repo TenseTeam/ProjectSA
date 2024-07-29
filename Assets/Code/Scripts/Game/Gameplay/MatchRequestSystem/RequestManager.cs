@@ -5,15 +5,21 @@ namespace ProjectSA.Gameplay.MatchRequestSystem
     using VUDK.Features.Main.EventSystem;
     using VUDK.Features.CraftingSystem.Data.ScriptableObjects;
     using ProjectSA.GameConstants;
+    using ProjectSA.Player.Cauldron.EventArgs;
 
     public class RequestManager : MonoBehaviour
     {
         [Header("Request Settings")]
         [SerializeField]
         private List<CraftedItemDataBase> _requestedItems;
+        [SerializeField]
+        private CraftedItemDataBase _secretItem;
         
         private List<CraftedItemDataBase> _unsatisfiedItems;
-        private CraftedItemDataBase _currentProvidedItem;
+        private CauldronCraftEventArgs _currentCauldronArgs;
+        
+        public bool IsSecretItemCrafted { get; private set; } = false;
+        public bool AreAllRequestsSatisfied => _unsatisfiedItems.Count == 0;
         
         private void Awake()
         {
@@ -22,46 +28,59 @@ namespace ProjectSA.Gameplay.MatchRequestSystem
         
         private void OnEnable()
         {
-            EventManager.Ins.AddListener<RecipeData>(PSAEventKeys.OnCraftedRecipe, OnCraftedRecipe);
+            EventManager.Ins.AddListener<CauldronCraftEventArgs>(PSAEventKeys.OnCraftedRecipeSuccess, OnCraftedRecipe);
+            EventManager.Ins.AddListener(PSAEventKeys.OnCraftedRecipeFail, RequestFail);
         }
 
         private void OnDisable()
         {
-            EventManager.Ins.RemoveListener<RecipeData>(PSAEventKeys.OnCraftedRecipe, OnCraftedRecipe);
+            EventManager.Ins.RemoveListener<CauldronCraftEventArgs>(PSAEventKeys.OnCraftedRecipeSuccess, OnCraftedRecipe);
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnCraftedRecipeFail, RequestFail);
         }
-
-        [ContextMenu("Send Provided Item")] // TODO: Remove this, it's just for testing
-        public void SendProvidedItem()
+        
+        private void OnCraftedRecipe(CauldronCraftEventArgs args)
         {
-            if (!_currentProvidedItem) return;
+            _currentCauldronArgs = args;
+            CheckRequest(_currentCauldronArgs.CraftedRecipe);
+        }
+        
+        private void CheckRequest(RecipeData recipeData)
+        {
+            if (_secretItem == recipeData.Result)
+            {
+                Debug.Log("Secret item crafted");
+                EventManager.Ins.TriggerEvent(PSAEventKeys.OnSecretItemCrafted);
+                EventManager.Ins.TriggerEvent(PSAEventKeys.OnRequestSuccess, _currentCauldronArgs);
+                IsSecretItemCrafted = true;
+                _currentCauldronArgs = null;
+                return;
+            }
             
-            CheckRequest(_currentProvidedItem);
-        }
-        
-        private void OnCraftedRecipe(RecipeData recipe)
-        { 
-            _currentProvidedItem = recipe.Result;
-        }
-        
-        private void CheckRequest(CraftedItemDataBase craftedItem)
-        {
-            if(_unsatisfiedItems.Contains(craftedItem))
-                RequestSuccess(craftedItem);
+            if(_unsatisfiedItems.Contains(recipeData.Result))
+                RequestSuccess();
             else
-                RequestFail(craftedItem);
+                RequestFail();
             
-            _currentProvidedItem = null;
+            _currentCauldronArgs = null;
         }
 
-        private void RequestSuccess(CraftedItemDataBase craftedItem)
+        private void RequestSuccess()
         {
-            _unsatisfiedItems.Remove(craftedItem);
-            EventManager.Ins.TriggerEvent(PSAEventKeys.OnRequestSuccess, craftedItem);
+            Debug.Log("Request Success");
+            _unsatisfiedItems.Remove(_currentCauldronArgs.CraftedRecipe.Result);
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnRequestSuccess, _currentCauldronArgs);
+
+            if (_unsatisfiedItems.Count == 0)
+            {
+                Debug.Log("<color=green>All requests satisfied</color>");
+                EventManager.Ins.TriggerEvent(PSAEventKeys.OnAllRequestsSatisfied);
+            }
         }
         
-        private void RequestFail(CraftedItemDataBase craftedItem)
+        private void RequestFail()
         {
-            EventManager.Ins.TriggerEvent(PSAEventKeys.OnRequestFail, craftedItem);
+            Debug.Log("Request Fail");
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnRequestFail);
         }
     }
 }

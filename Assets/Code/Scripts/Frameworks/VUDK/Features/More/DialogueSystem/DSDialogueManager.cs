@@ -73,8 +73,10 @@
             DSEvents.DialogueStartHandler += StartDialogue;
             DSEvents.DialogueChoiceHandler += SelectChoice;
             DSEvents.DialogueInterruptHandler += InterruptDialogue;
-            _skipButton.onClick.AddListener(NextDialogueInput);
-            _dialogueCloseButton.onClick.AddListener(InterruptDialogue);
+            if (_skipButton)
+                _skipButton.onClick.AddListener(NextDialogueInput);
+            if (_dialogueCloseButton)
+                _dialogueCloseButton.onClick.AddListener(InterruptDialogue);
         }
 
         private void OnDisable()
@@ -82,8 +84,10 @@
             DSEvents.DialogueStartHandler -= StartDialogue;
             DSEvents.DialogueChoiceHandler -= SelectChoice;
             DSEvents.DialogueInterruptHandler -= InterruptDialogue;
-            _skipButton.onClick.RemoveListener(NextDialogueInput);
-            _dialogueCloseButton.onClick.RemoveListener(InterruptDialogue);
+            if (_skipButton)
+                _skipButton.onClick.RemoveListener(NextDialogueInput);
+            if (_dialogueCloseButton)
+                _dialogueCloseButton.onClick.RemoveListener(InterruptDialogue);
         }
 
         public void StartDialogue(object sender, OnStartDialogueEventArgs args)
@@ -113,7 +117,7 @@
             _isDialogueEnded = true;
         }
 
-        public void NextDialogue()
+        private void NextDialogue()
         {
             DSEvents.OnNext?.Invoke();
             _dialogueContainerData.OnNext?.Invoke();
@@ -217,6 +221,27 @@
             StopAllCoroutines();
             Disable();
         }
+        
+        public void NextDialogueInput()
+        {
+            if (!IsDialogueOpen) return;
+
+            if (IsTalking)
+            {
+                _isSkipping = true;
+            }
+            else
+            {
+                if (_isDialogueEnded)
+                {
+                    Disable();
+                    return;
+                }
+
+                if (!_isWaitingForChoice)
+                    NextDialogue();
+            }
+        }
 
         private void BeginChoicePhase(DSDialogueData dialogueData)
         {
@@ -245,27 +270,6 @@
                 EnableDialogueBox();
 
             DisableChoicesBox();
-        }
-
-        private void NextDialogueInput()
-        {
-            if (!IsDialogueOpen) return;
-
-            if (IsTalking)
-            {
-                _isSkipping = true;
-            }
-            else
-            {
-                if (_isDialogueEnded)
-                {
-                    Disable();
-                    return;
-                }
-
-                if (!_isWaitingForChoice)
-                    NextDialogue();
-            }
         }
 
         private void SelectChoice(int choiceIndex)

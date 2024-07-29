@@ -42,7 +42,7 @@
         protected override void OnStop()
         {
             base.OnStop();
-            _clipDelayTask.Stop();
+            _clipDelayTask.Pause();
             _animator.SetBool("IsSpeaking", false);
         }
     }

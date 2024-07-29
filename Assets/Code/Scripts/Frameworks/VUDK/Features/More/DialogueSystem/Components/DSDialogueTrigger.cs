@@ -1,5 +1,6 @@
 ﻿namespace VUDK.Features.More.DialogueSystem.Components
 {
+    using UnityEngine;
     using VUDK.Features.More.DialogueSystem.Components.Interfaces;
     using VUDK.Features.More.DialogueSystem.Events;
 
@@ -18,9 +19,10 @@
             DialogueContainer.OnEnd -= OnDialogueEnded;
         }
 
+        [ContextMenu("Trigger")]
         public virtual void Trigger()
         {
-            if( (!IsRepeatable && _hasBeenTriggered) || _isSpeaking)
+            if((!IsRepeatable && _hasBeenTriggered) || _isSpeaking)
                 return;
 
             _isSpeaking = true;

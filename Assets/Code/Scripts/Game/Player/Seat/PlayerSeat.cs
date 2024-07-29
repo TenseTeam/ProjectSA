@@ -1,12 +1,12 @@
 namespace ProjectSA.Player.Seat
 {
-    using GameConstants;
     using UnityEngine;
     using UnityEngine.InputSystem;
     using VUDK.Features.Main.Camera.CameraViews;
     using VUDK.Features.Main.InputSystem;
     using VUDK.Features.Main.EventSystem;
-    using ProjectSA.Gameplay.InteractSystem.Interactables;
+    using ProjectSA.GameConstants;
+    using ProjectSA.Gameplay.InteractSystem.Interactables.Base;
 
     public class PlayerSeat : GameInteractable
     {
@@ -38,13 +38,15 @@ namespace ProjectSA.Player.Seat
             }
         }
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             InputsManager.Inputs.Interaction.LeaveInteraction.performed += LeaveInteraction;
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
+            base.OnDisable();
             InputsManager.Inputs.Interaction.LeaveInteraction.performed -= LeaveInteraction;
         }
         
