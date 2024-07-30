@@ -50,7 +50,10 @@ namespace VUDK.Features.UI.MenuSystem.MenuPreferences
             /// <returns>The loaded fullscreen setting</returns>
             public static bool LoadFullscreen()
             {
-                return PlayerPrefs.GetString(FULLSCREEN_PREF).Equals("true") ? true : false;
+                string full = PlayerPrefs.GetString(FULLSCREEN_PREF);
+                if (full is "") return true; // Default value is true
+                
+                return full.Equals("true") ? true : false;
             }
 
             /// <summary>

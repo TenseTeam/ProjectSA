@@ -127,5 +127,15 @@
                 return points[index].position;
             }
         }
+        
+        public static float NormalizeInRange(float value, float min, float max)
+        {
+            return (1 - value) * min + value * max;
+        }
+        
+        public static float DenormalizeInRange(float value, float min, float max)
+        {
+            return (value - min) / (max - min);
+        }
     }
 }
