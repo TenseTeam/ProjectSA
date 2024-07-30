@@ -254,8 +254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <WaitLoadingSceneDelay>k__BackingField:
     <Duration>k__BackingField: 0
-  _menuScene: 
-  _gameScene: Assets/Level/Scenes/_Debug/scn_DebugScene.unity
+  _menuScene: Assets/Level/Scenes/scn_MainMenu.unity
+  _gameScene: Assets/Level/Scenes/scn_GameLevel.unity
   _gameoverScene: Assets/Level/Scenes/scn_Gameover.unity
   _gamevictoryScene: Assets/Level/Scenes/scn_Gamevictory.unity
   _creditsScene: 
@@ -372,6 +372,8 @@ MonoBehaviour:
     - Key: {fileID: 11400000, guid: 278400de0ae5c70439ba0fd48f11090e, type: 2}
       Value: {fileID: 0}
     - Key: {fileID: 11400000, guid: 9b3543e444ea6854b94094ec2897423f, type: 2}
+      Value: {fileID: 0}
+    - Key: {fileID: 11400000, guid: 5d77e4b34cf9a1645841cb21ff138b86, type: 2}
       Value: {fileID: 0}
 --- !u!1 &2873986936893340150
 GameObject:
@@ -852,6 +854,22 @@ MonoBehaviour:
       Value: {fileID: 2657850368188666442}
     - Key: {fileID: 11400000, guid: d6357af35bfcd0c44adb43a898e4a080, type: 2}
       Value: {fileID: 2360900160294573180}
+    - Key: {fileID: 11400000, guid: fc2fe93850042184891c79da0c46713b, type: 2}
+      Value: {fileID: 4449940918960663831}
+    - Key: {fileID: 11400000, guid: 13b69c8aeee3cfe47b9994e340d10f00, type: 2}
+      Value: {fileID: 1420887769370802520}
+    - Key: {fileID: 11400000, guid: 74b8271faf9191f48b30625f23b488ca, type: 2}
+      Value: {fileID: 6599060304183099413}
+    - Key: {fileID: 11400000, guid: 16d31bdea42eef148a6159dd3445168f, type: 2}
+      Value: {fileID: 8308532513960638037}
+    - Key: {fileID: 11400000, guid: e0a91c2df5031104fab100e91a28c48f, type: 2}
+      Value: {fileID: 4872204218138725265}
+    - Key: {fileID: 11400000, guid: c482a265ed924a94b85bb35fd5a37992, type: 2}
+      Value: {fileID: 3735645684167613390}
+    - Key: {fileID: 11400000, guid: 4be7e289675f0494eb70baca78545a3d, type: 2}
+      Value: {fileID: 4901620491328406780}
+    - Key: {fileID: 11400000, guid: d6b603a494aa5f64c9f5faa525f76934, type: 2}
+      Value: {fileID: 7230004123659012503}
 --- !u!114 &7645017871654169691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2013,7 +2031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _requestDelayTask:
-    <Duration>k__BackingField: 300
+    <Duration>k__BackingField: 150
   _stunDelayTask:
     <Duration>k__BackingField: 90
 --- !u!1 &8390234998302864441

@@ -62,7 +62,6 @@ namespace VUDK.Features.CraftingSystem
         {
             if (IsCrafting || CurrentIngredients.Count == 0) return;
             
-            _craftTask.Start();
             OnStartCraft();
         }
 
@@ -72,7 +71,10 @@ namespace VUDK.Features.CraftingSystem
 
         protected abstract void OnClearIngredients();
 
-        protected abstract void OnStartCraft();
+        protected virtual void OnStartCraft()
+        {
+            _craftTask.Start();
+        }
         
         protected abstract void OnCraftCompleted();
 

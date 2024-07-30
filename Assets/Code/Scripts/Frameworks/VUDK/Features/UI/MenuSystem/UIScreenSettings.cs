@@ -1,5 +1,6 @@
 namespace VUDK.Features.UI.MenuSystem
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using UnityEngine;
@@ -23,12 +24,53 @@ namespace VUDK.Features.UI.MenuSystem
         {
             QualitySettings.vSyncCount = 0; // Disable V-Sync to allow the FPS Cap
 
+            _toggleFullscreen.SetIsOnWithoutNotify(MenuPrefsSaver.Screen.LoadFullscreen());
+
+            InitDropdownResolutions();
+            InitFPSDropdown();
+        }
+
+        private void OnEnable()
+        {
+            _toggleFullscreen.onValueChanged.AddListener(OnFullscreenChanged);
+            
+            if (_dropResolution)
+                _dropResolution.onValueChanged.AddListener(OnResolutionChanged);
+            
+            if (_dropFPS)
+                _dropFPS.onValueChanged.AddListener(OnRefreshRateChanged);
+        }
+
+        private void OnDisable()
+        {
+            _toggleFullscreen.onValueChanged.RemoveListener(OnFullscreenChanged);
+            
+            if (_dropResolution)
+                _dropResolution.onValueChanged.RemoveListener(OnResolutionChanged);
+            
+            if (_dropFPS)
+                _dropFPS.onValueChanged.RemoveListener(OnRefreshRateChanged);
+        }
+
+        private void InitFPSDropdown()
+        {
+            if (!_dropFPS) return;
+            
+            if (MenuPrefsSaver.Screen.LoadRefreshRate(out int hz, out int selectedHz))
+            {
+                Application.targetFrameRate = hz;
+                _dropFPS.value = selectedHz;
+            }
+        }
+
+        private void InitDropdownResolutions()
+        {
+            if (!_dropResolution) return;
+            
             foreach (string resolution in GetCurrentResolutions())
             {
                 _dropResolution.options.Add(new TMP_Dropdown.OptionData(resolution));
             }
-
-            _toggleFullscreen.SetIsOnWithoutNotify(MenuPrefsSaver.Screen.LoadFullscreen());
 
             if (MenuPrefsSaver.Screen.LoadResolution(out int w, out int h, out int sel))
             {
@@ -38,12 +80,6 @@ namespace VUDK.Features.UI.MenuSystem
             else
             {
                 Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, _toggleFullscreen.isOn);
-            }
-
-            if (MenuPrefsSaver.Screen.LoadRefreshRate(out int hz, out int selectedHz))
-            {
-                Application.targetFrameRate = hz;
-                _dropFPS.value = selectedHz;
             }
         }
 
@@ -66,7 +102,22 @@ namespace VUDK.Features.UI.MenuSystem
 
             return resList.ToArray().Distinct().ToArray(); // Distinct() because there are resolutions' duplicates due the refresh rate
         }
+        
+        private void OnFullscreenChanged(bool arg0)
+        {
+            ToggleSetFullScreen();
+        }
 
+        private void OnResolutionChanged(int arg0)
+        {
+            SetResolution();
+        }
+        
+        private void OnRefreshRateChanged(int arg0)
+        {
+            SetRefreshRate();
+        }
+        
         #region Setter
 
         /// <summary>

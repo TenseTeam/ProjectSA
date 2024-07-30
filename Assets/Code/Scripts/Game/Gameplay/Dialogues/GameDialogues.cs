@@ -1,4 +1,4 @@
-namespace ProjectSA.Enemy
+namespace ProjectSA.Gameplay.Dialogues
 {
     using System.Collections.Generic;
     using UnityEngine;
@@ -10,7 +10,7 @@ namespace ProjectSA.Enemy
     using ProjectSA.Player.Cauldron.EventArgs;
     using ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects;
 
-    public class EnemyDialogues : MonoBehaviour
+    public class GameDialogues : MonoBehaviour
     {
         [Header("Dialogues")]
         [SerializeField]
@@ -19,12 +19,15 @@ namespace ProjectSA.Enemy
         private List<DSDialogueContainerData> _failedRequestDialogues;
         [SerializeField]
         private List<DSDialogueContainerData> _cantResolvePuzzleDialogues;
-
+        [SerializeField]
+        private DSDialogueContainerData _triedCraftWhileStunnedDialogue;
+        
         private void OnEnable()
         {
             EventManager.Ins.AddListener(PSAEventKeys.OnRequestFail, OnRequestFail);
             EventManager.Ins.AddListener(PSAEventKeys.OnCantInteractPuzzle, OnCantInteractPuzzle);
             EventManager.Ins.AddListener<CauldronCraftEventArgs>(PSAEventKeys.OnRequestSuccess, OnRequestSuccess);
+            EventManager.Ins.AddListener(PSAEventKeys.OnTriedCraftWhileStunned, OnTriedCraftWhileStunned);
         }
 
         private void OnDisable()
@@ -32,6 +35,15 @@ namespace ProjectSA.Enemy
             EventManager.Ins.RemoveListener(PSAEventKeys.OnRequestFail, OnRequestFail);
             EventManager.Ins.RemoveListener(PSAEventKeys.OnCantInteractPuzzle, OnCantInteractPuzzle);
             EventManager.Ins.RemoveListener<CauldronCraftEventArgs>(PSAEventKeys.OnRequestSuccess, OnRequestSuccess);
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnTriedCraftWhileStunned, OnTriedCraftWhileStunned);
+        }
+        
+        private void OnTriedCraftWhileStunned()
+        {
+            if (!_triedCraftWhileStunnedDialogue) return;
+            
+            OnStartDialogueEventArgs dialogueArgs = new OnStartDialogueEventArgs(_triedCraftWhileStunnedDialogue, null, false, false);
+            DSEvents.DialogueStartHandler?.Invoke(this, dialogueArgs);
         }
 
         private void OnRequestSuccess(CauldronCraftEventArgs args)

@@ -56,6 +56,7 @@ namespace ProjectSA.GameConstants
         public const string OnCraftedRecipeSuccess = "OnCraftedRecipe";
         public const string OnCraftedRecipeFail = "OnFailedCraft";
         public const string OnSecretItemCrafted = "OnSecretItemCrafted";
+        public const string OnTriedCraftWhileStunned = "OnTriedCraftWhileStunned";
         
         // Match Request Events
         public const string OnRequestSuccess = "OnRequestSuccess";

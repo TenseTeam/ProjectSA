@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8617987319403518148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4399117057607694614}
+  - component: {fileID: 8501069650160935479}
+  m_Layer: 0
+  m_Name: pf_GameDialogues
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4399117057607694614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617987319403518148}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.188, y: 1.011, z: 2.477}
+  m_LocalScale: {x: 0.726, y: 0.726, z: 0.726}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8501069650160935479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617987319403518148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452c0f3c933f46da901890537bdf4581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _potionsDialogues:
+    _dictionary:
+    - Key: {fileID: 11400000, guid: 9c90996448cfd354f9e6e9918d3c664f, type: 2}
+      Value: {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00, type: 2}
+    - Key: {fileID: 11400000, guid: 278400de0ae5c70439ba0fd48f11090e, type: 2}
+      Value: {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00, type: 2}
+    - Key: {fileID: 11400000, guid: 9b3543e444ea6854b94094ec2897423f, type: 2}
+      Value: {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00, type: 2}
+  _failedRequestDialogues:
+  - {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00, type: 2}
+  _cantResolvePuzzleDialogues:
+  - {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00, type: 2}
+  _triedCraftWhileStunnedDialogue: {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00,
+    type: 2}

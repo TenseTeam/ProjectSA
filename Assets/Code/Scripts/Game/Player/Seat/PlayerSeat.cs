@@ -1,5 +1,7 @@
 namespace ProjectSA.Player.Seat
 {
+    using Managers.GameMachine.Data.Enums;
+    using Managers.GameManager;
     using UnityEngine;
     using UnityEngine.InputSystem;
     using VUDK.Features.Main.Camera.CameraViews;
@@ -7,6 +9,8 @@ namespace ProjectSA.Player.Seat
     using VUDK.Features.Main.EventSystem;
     using ProjectSA.GameConstants;
     using ProjectSA.Gameplay.InteractSystem.Interactables.Base;
+    using VUDK.Generic.Managers.Main;
+    using VUDK.Generic.Managers.Main.Interfaces.Casts;
 
     public class PlayerSeat : GameInteractable
     {
@@ -21,7 +25,7 @@ namespace ProjectSA.Player.Seat
         private bool _canLook;
 
         private bool _isSeated;
-
+        
         private void OnValidate()
         {
             if (!_playerCamera) return;
@@ -49,13 +53,13 @@ namespace ProjectSA.Player.Seat
             base.OnDisable();
             InputsManager.Inputs.Interaction.LeaveInteraction.performed -= LeaveInteraction;
         }
-        
-        public override void Interact()
+
+        protected override void OnInteract()
         {
-            base.Interact();
+            base.OnInteract();
             SeatPlayer();
         }
-        
+
         public void SeatPlayer()
         {
             if (_isSeated) return;

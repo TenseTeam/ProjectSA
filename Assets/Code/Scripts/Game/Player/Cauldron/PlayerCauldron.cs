@@ -2,20 +2,26 @@ namespace ProjectSA.Player.Cauldron
 {
     using System.Collections.Generic;
     using EventArgs;
+    using Managers.GameMachine.Data.Enums;
+    using Managers.GameManager;
     using UnityEngine;
     using VUDK.Features.CraftingSystem;
     using VUDK.Features.Main.EventSystem;
     using VUDK.Features.CraftingSystem.Data.ScriptableObjects;
     using ProjectSA.GameConstants;
     using ProjectSA.Gameplay.CraftingItems.Data.ScriptableObjects;
+    using VUDK.Generic.Managers.Main;
+    using VUDK.Generic.Managers.Main.Interfaces.Casts;
 
     [RequireComponent(typeof(PlayerCauldronInteractable))]
     [RequireComponent(typeof(CauldronGraphicsController))]
-    public class PlayerCauldron : CrafterBase
+    public class PlayerCauldron : CrafterBase, ICastGameManager<PSAGameManager>
     {
         private CauldronGraphicsController _graphicsController;
         private PlayerCauldronInteractable _cauldronInteractable;
 
+        public PSAGameManager GameManager => MainManager.Ins.GameManager as PSAGameManager;
+        
         private void Awake()
         {
             TryGetComponent(out _graphicsController);
@@ -57,6 +63,13 @@ namespace ProjectSA.Player.Cauldron
 
         protected override void OnStartCraft()
         {
+            if (GameManager.GameMachine.IsState(GameStateKeys.StunState))
+            {
+                EventManager.Ins.TriggerEvent(PSAEventKeys.OnTriedCraftWhileStunned);
+                return;
+            }
+            
+            base.OnStartCraft();
             Debug.Log("Started cauldron craft");
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnCraftStarted);
             _graphicsController.ClearIngredientsUI();

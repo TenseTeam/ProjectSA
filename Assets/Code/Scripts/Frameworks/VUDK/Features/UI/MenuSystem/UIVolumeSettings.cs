@@ -38,6 +38,20 @@ namespace VUDK.Features.UI.MenuSystem
             }
         }
 
+        private void OnEnable()
+        {
+            _masterSlider.onValueChanged.AddListener(OnMasterChanged);
+            _musicSlider.onValueChanged.AddListener(OnMusicChanged);
+            _effectsSlider.onValueChanged.AddListener(OnEffectsChanged);
+        }
+        
+        private void OnDisable()
+        {
+            _masterSlider.onValueChanged.RemoveListener(OnMasterChanged);
+            _musicSlider.onValueChanged.RemoveListener(OnMusicChanged);
+            _effectsSlider.onValueChanged.RemoveListener(OnEffectsChanged);
+        }
+
         /// <summary>
         /// Sets the master volume.
         /// </summary>
@@ -63,6 +77,21 @@ namespace VUDK.Features.UI.MenuSystem
         {
             _mixer.SetFloat("Effects", _effectsSlider.value);
             MenuPrefsSaver.Audio.SaveVolume(_masterSlider.value, _musicSlider.value, _effectsSlider.value);
+        }
+        
+        private void OnMasterChanged(float arg0)
+        {
+            SetMaster();
+        }
+        
+        private void OnMusicChanged(float arg0)
+        {
+            SetMusic();
+        }
+        
+        private void OnEffectsChanged(float arg0)
+        {
+            SetEffects();
         }
     }
 }
