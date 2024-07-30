@@ -47,14 +47,20 @@ MonoBehaviour:
   _potionsDialogues:
     _dictionary:
     - Key: {fileID: 11400000, guid: 9c90996448cfd354f9e6e9918d3c664f, type: 2}
-      Value: {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00, type: 2}
+      Value: {fileID: 11400000, guid: e2a0776e3783a3c41827db8b0dd57d9f, type: 2}
     - Key: {fileID: 11400000, guid: 278400de0ae5c70439ba0fd48f11090e, type: 2}
-      Value: {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00, type: 2}
+      Value: {fileID: 11400000, guid: e2a0776e3783a3c41827db8b0dd57d9f, type: 2}
     - Key: {fileID: 11400000, guid: 9b3543e444ea6854b94094ec2897423f, type: 2}
-      Value: {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00, type: 2}
+      Value: {fileID: 11400000, guid: e2a0776e3783a3c41827db8b0dd57d9f, type: 2}
   _failedRequestDialogues:
-  - {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00, type: 2}
+  - {fileID: 11400000, guid: 4349931814304be49a90045c5faaaa85, type: 2}
   _cantResolvePuzzleDialogues:
-  - {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00, type: 2}
-  _triedCraftWhileStunnedDialogue: {fileID: 11400000, guid: 3c3870f79bb3423429bf2352e2cd5a00,
+  - {fileID: 11400000, guid: 195c51f8d8fe4934d8548f939cb99dd9, type: 2}
+  _firstSeatDialogue: {fileID: 11400000, guid: f192b2d104f945e448a9a9180553b551, type: 2}
+  _triedCraftWhileStunnedDialogue: {fileID: 11400000, guid: 195c51f8d8fe4934d8548f939cb99dd9,
+    type: 2}
+  _requestTimerEndDialogue: {fileID: 11400000, guid: 9e36cdd0e44bc924493314905bc17381,
+    type: 2}
+  _stunnedDialogue: {fileID: 11400000, guid: 32cb7e4edef7bce42aca0342a5ba04ca, type: 2}
+  _stunTimerEndDialogue: {fileID: 11400000, guid: 7848e6c1534c89e418817585deaf1be2,
     type: 2}

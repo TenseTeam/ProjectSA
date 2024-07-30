@@ -1224,7 +1224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bae2f7f21f219046b826ad9c0b9fe50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueContainer: {fileID: 11400000, guid: 001920eba8121cd4288930c7ae005d45, type: 2}
+  DialogueContainer: {fileID: 11400000, guid: e7bca989d7a2fb541a8402d1209f1150, type: 2}
   StartDialogue: {fileID: 0}
   _dialogueGroup: {fileID: 0}
   RandomStartDialogue: 0

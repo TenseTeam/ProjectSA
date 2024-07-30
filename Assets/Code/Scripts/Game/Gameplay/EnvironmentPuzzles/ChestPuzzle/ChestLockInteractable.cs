@@ -14,6 +14,9 @@ namespace ProjectSA.Gameplay.EnvironmentPuzzles.ChestPuzzle
         [SerializeField]
         private DelayTask _acidTask;
         
+        public float UnlockRemainingTime => _acidTask.RemainingTime;
+        
+        public UnityEvent OnChestStartedUnlocking;
         public UnityEvent OnChestUnlocked;
         
         protected override void OnEnable()
@@ -43,6 +46,7 @@ namespace ProjectSA.Gameplay.EnvironmentPuzzles.ChestPuzzle
         protected override void Resolve()
         {
             _acidTask.Start();
+            OnChestStartedUnlocking?.Invoke();
             OnPuzzleSolved?.Invoke();
             PlayerHand.RemoveElementFromHand();
             DisableInteraction();

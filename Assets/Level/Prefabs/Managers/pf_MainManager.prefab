@@ -258,7 +258,7 @@ MonoBehaviour:
   _gameScene: Assets/Level/Scenes/scn_GameLevel.unity
   _gameoverScene: Assets/Level/Scenes/scn_Gameover.unity
   _gamevictoryScene: Assets/Level/Scenes/scn_Gamevictory.unity
-  _creditsScene: 
+  _creditsScene: Assets/Level/Scenes/scn_CreditsScene.unity
 --- !u!1 &2102568365927928251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,7 +1453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887db048b5a802b4e9022309a0931cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogueToListen: {fileID: 11400000, guid: 001920eba8121cd4288930c7ae005d45, type: 2}
+  _dialogueToListen: {fileID: 11400000, guid: ab185d50d184149469b7fa7fd45a949e, type: 2}
   OnStart:
     m_PersistentCalls:
       m_Calls: []
@@ -1478,7 +1478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bae2f7f21f219046b826ad9c0b9fe50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueContainer: {fileID: 11400000, guid: 001920eba8121cd4288930c7ae005d45, type: 2}
+  DialogueContainer: {fileID: 11400000, guid: ab185d50d184149469b7fa7fd45a949e, type: 2}
   StartDialogue: {fileID: 0}
   _dialogueGroup: {fileID: 0}
   RandomStartDialogue: 0

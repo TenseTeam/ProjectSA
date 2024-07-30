@@ -21,6 +21,7 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
 
         private bool _isInteractionEnabled = true;
         private bool _canBeSecondaryInteracted = false;
+        private bool _wasEnabled = false;
 
         protected virtual void Awake()
         {
@@ -144,12 +145,14 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables.Base
         
         private void OnOpenElementsPanel()
         {
+            _wasEnabled = _isInteractionEnabled;
             DisableInteraction();
         }
         
         private void OnCloseElementsPanel()
         {
-            EnableInteraction(false);
+            if (_wasEnabled)
+                EnableInteraction(false);
         }
     }
 }
