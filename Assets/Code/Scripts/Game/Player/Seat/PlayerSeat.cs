@@ -9,6 +9,7 @@ namespace ProjectSA.Player.Seat
     using VUDK.Features.Main.EventSystem;
     using ProjectSA.GameConstants;
     using ProjectSA.Gameplay.InteractSystem.Interactables.Base;
+    using UnityEngine.Events;
     using VUDK.Generic.Managers.Main;
     using VUDK.Generic.Managers.Main.Interfaces.Casts;
 
@@ -26,6 +27,9 @@ namespace ProjectSA.Player.Seat
 
         private bool _isSeated;
         private bool _isFirstSeat;
+        
+        public UnityEvent OnPlayerSeat;
+        public UnityEvent OnPlayerUnseat;
         
         private void OnValidate()
         {
@@ -69,6 +73,7 @@ namespace ProjectSA.Player.Seat
             _isSeated = true;
             _playerCamera.SetTarget(_target, _smoothTime, _canLook);
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnPlayerSeat);
+            OnPlayerSeat?.Invoke();
         }
         
         public void LeaveSeat()
@@ -78,6 +83,7 @@ namespace ProjectSA.Player.Seat
             _isSeated = false;
             _playerCamera.ResetTarget();
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnPlayerUnseat);
+            OnPlayerUnseat?.Invoke();
         }
         
         private void LeaveInteraction(InputAction.CallbackContext context)

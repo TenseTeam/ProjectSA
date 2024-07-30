@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: 0
   m_EditorClassIdentifier: 
   DialogueName: 0
-  DialogueText: Now prepare what is written in the grimoire next to you and do it
-    quickly.
-  ActorData: {fileID: 11400000, guid: 2b191adc44039e943b5629acaba57410, type: 2}
+  DialogueText: I can't now... He's watching me...
+  ActorData: {fileID: 11400000, guid: 6dba7b696841f5f4f88027aa06be2b09, type: 2}
   DialogueAudioClip: {fileID: 0}
   Choices:
   - Text: Next Dialogue
