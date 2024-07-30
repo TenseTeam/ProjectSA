@@ -12728,6 +12728,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pf_OpenStandBooks (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5815704189008736456, guid: dbd153be1578ace4f806a470fe94e539,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff4f2e79061059642ad4910e8b1ca161, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
