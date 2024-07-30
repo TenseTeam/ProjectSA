@@ -1,6 +1,5 @@
 namespace VUDK.Features.UI.MenuSystem
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using UnityEngine;
@@ -24,10 +23,15 @@ namespace VUDK.Features.UI.MenuSystem
         {
             QualitySettings.vSyncCount = 0; // Disable V-Sync to allow the FPS Cap
 
-            _toggleFullscreen.SetIsOnWithoutNotify(MenuPrefsSaver.Screen.LoadFullscreen());
-
+            InitFullscreen();
             InitDropdownResolutions();
             InitFPSDropdown();
+        }
+        
+        private void InitFullscreen()
+        {
+            _toggleFullscreen.SetIsOnWithoutNotify(MenuPrefsSaver.Screen.LoadFullscreen());
+            Screen.fullScreen = _toggleFullscreen.isOn;
         }
 
         private void OnEnable()
@@ -105,7 +109,7 @@ namespace VUDK.Features.UI.MenuSystem
         
         private void OnFullscreenChanged(bool arg0)
         {
-            ToggleSetFullScreen();
+            SetFullScreen(arg0);
         }
 
         private void OnResolutionChanged(int arg0)
@@ -148,14 +152,11 @@ namespace VUDK.Features.UI.MenuSystem
             MenuPrefsSaver.Screen.SaveRefreshRate(fps, _dropFPS.value);
             Application.targetFrameRate = fps;
         }
-
-        /// <summary>
-        /// Toggle for setting the prefered fullscreen mode
-        /// </summary>
-        public void ToggleSetFullScreen()
+        
+        public void SetFullScreen(bool isFullscreen)
         {
-            Screen.fullScreen = _toggleFullscreen.isOn;
-            MenuPrefsSaver.Screen.SaveFullscreen(_toggleFullscreen.isOn);
+            Screen.fullScreen = isFullscreen;
+            MenuPrefsSaver.Screen.SaveFullscreen(Screen.fullScreen);
         }
 
         #endregion
