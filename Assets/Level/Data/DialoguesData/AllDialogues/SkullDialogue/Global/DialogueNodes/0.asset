@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71793e812f3192d4c83152084082ded1, type: 3}
+  m_Name: 0
+  m_EditorClassIdentifier: 
+  DialogueName: 0
+  DialogueText: 'ah...my bones, I must be...dead...huh? But you...you''re my apprentice '
+  ActorData: {fileID: 11400000, guid: 89afb3be9ebed09479e53a6183d0e76f, type: 2}
+  DialogueAudioClip: {fileID: 0}
+  Choices:
+  - Text: Next Dialogue
+    NextDialogue: {fileID: 11400000, guid: 0cc0a4e9d2b60bb47a3802be4c7f4883, type: 2}
+  DialogueType: 0
+  IsStartDialogue: 1
