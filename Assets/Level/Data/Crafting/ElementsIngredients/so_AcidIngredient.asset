@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: so_AcidIngredient
   m_EditorClassIdentifier: 
   Name: Acid
-  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  SignDecalTexture: {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
+  Icon: {fileID: 21300000, guid: c45c2ed50d5d95949aa74b3e795545af, type: 3}
+  SignDecalTexture: {fileID: 2800000, guid: c45c2ed50d5d95949aa74b3e795545af, type: 3}
   InkCost: 50
   BloodCost: 75
+  CanStun: 0
   IngredientPoolKey: {fileID: 11400000, guid: 884e824205810e149bb356f03db9c1a2, type: 2}
   UsableElementPoolKey: {fileID: 11400000, guid: 14ccce125f934ab498c6508a696adaf1,
     type: 2}

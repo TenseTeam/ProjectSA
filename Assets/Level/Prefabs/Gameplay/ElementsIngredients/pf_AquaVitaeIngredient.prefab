@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3421065618768030501}
   - component: {fileID: 4457420487534047351}
   m_Layer: 0
-  m_Name: pf_AcidIngredient
+  m_Name: pf_AquaVitaeIngredient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,7 +415,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7840db3b3b981c447801680b301643f5, type: 2}
+  - {fileID: 2100000, guid: 579a51fff420df7438100256c8b1066e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

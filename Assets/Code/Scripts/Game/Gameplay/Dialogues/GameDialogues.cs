@@ -20,7 +20,15 @@ namespace ProjectSA.Gameplay.Dialogues
         [SerializeField]
         private List<DSDialogueContainerData> _cantResolvePuzzleDialogues;
         [SerializeField]
+        private DSDialogueContainerData _firstSeatDialogue;
+        [SerializeField]
         private DSDialogueContainerData _triedCraftWhileStunnedDialogue;
+        [SerializeField]
+        private DSDialogueContainerData _requestTimerEndDialogue;
+        [SerializeField]
+        private DSDialogueContainerData _stunnedDialogue;
+        [SerializeField]
+        private DSDialogueContainerData _stunTimerEndDialogue;
         
         private void OnEnable()
         {
@@ -28,6 +36,10 @@ namespace ProjectSA.Gameplay.Dialogues
             EventManager.Ins.AddListener(PSAEventKeys.OnCantInteractPuzzle, OnCantInteractPuzzle);
             EventManager.Ins.AddListener<CauldronCraftEventArgs>(PSAEventKeys.OnRequestSuccess, OnRequestSuccess);
             EventManager.Ins.AddListener(PSAEventKeys.OnTriedCraftWhileStunned, OnTriedCraftWhileStunned);
+            EventManager.Ins.AddListener(PSAEventKeys.OnPlayerFirstSeat, OnPlayerFirstSeat);
+            EventManager.Ins.AddListener(PSAEventKeys.OnRequestTimerEnd, OnRequestTimerEnd);
+            EventManager.Ins.AddListener(PSAEventKeys.OnStunState, OnStunState);
+            EventManager.Ins.AddListener(PSAEventKeys.OnStunTimerEnd, OnStunTimerEnd);
         }
 
         private void OnDisable()
@@ -36,6 +48,34 @@ namespace ProjectSA.Gameplay.Dialogues
             EventManager.Ins.RemoveListener(PSAEventKeys.OnCantInteractPuzzle, OnCantInteractPuzzle);
             EventManager.Ins.RemoveListener<CauldronCraftEventArgs>(PSAEventKeys.OnRequestSuccess, OnRequestSuccess);
             EventManager.Ins.RemoveListener(PSAEventKeys.OnTriedCraftWhileStunned, OnTriedCraftWhileStunned);
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnPlayerFirstSeat, OnPlayerFirstSeat);
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnRequestTimerEnd, OnRequestTimerEnd);
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnStunState, OnStunState);
+            EventManager.Ins.RemoveListener(PSAEventKeys.OnStunTimerEnd, OnStunTimerEnd);
+        }
+        
+        private void OnStunTimerEnd()
+        {
+            if (!_stunTimerEndDialogue) return;
+            
+            OnStartDialogueEventArgs dialogueArgs = new OnStartDialogueEventArgs(_stunTimerEndDialogue, null, false, false);
+            DSEvents.DialogueStartHandler?.Invoke(this, dialogueArgs);
+        }
+        
+        private void OnStunState()
+        {
+            if (!_stunnedDialogue) return;
+            
+            OnStartDialogueEventArgs dialogueArgs = new OnStartDialogueEventArgs(_stunnedDialogue, null, false, false);
+            DSEvents.DialogueStartHandler?.Invoke(this, dialogueArgs);
+        }
+        
+        private void OnRequestTimerEnd()
+        {
+            if (!_requestTimerEndDialogue) return;
+            
+            OnStartDialogueEventArgs dialogueArgs = new OnStartDialogueEventArgs(_requestTimerEndDialogue, null, false, false);
+            DSEvents.DialogueStartHandler?.Invoke(this, dialogueArgs);
         }
         
         private void OnTriedCraftWhileStunned()
@@ -61,6 +101,19 @@ namespace ProjectSA.Gameplay.Dialogues
         private void OnCantInteractPuzzle()
         {
             TriggerCantResolvePuzzleDialogue();
+        }
+
+        private void OnPlayerFirstSeat()
+        {
+            TriggerFirstSeatDialogue();
+        }
+        
+        private void TriggerFirstSeatDialogue()
+        {
+            if (!_firstSeatDialogue) return;
+            
+            OnStartDialogueEventArgs dialogueArgs = new OnStartDialogueEventArgs(_firstSeatDialogue, null, false, false);
+            DSEvents.DialogueStartHandler?.Invoke(this, dialogueArgs);
         }
 
         private void TriggerSuccessDialogue(CraftedPotionData potionData)

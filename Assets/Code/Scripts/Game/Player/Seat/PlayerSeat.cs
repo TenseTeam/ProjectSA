@@ -25,6 +25,7 @@ namespace ProjectSA.Player.Seat
         private bool _canLook;
 
         private bool _isSeated;
+        private bool _isFirstSeat;
         
         private void OnValidate()
         {
@@ -64,6 +65,7 @@ namespace ProjectSA.Player.Seat
         {
             if (_isSeated) return;
             
+            FirstSeat();
             _isSeated = true;
             _playerCamera.SetTarget(_target, _smoothTime, _canLook);
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnPlayerSeat);
@@ -81,6 +83,14 @@ namespace ProjectSA.Player.Seat
         private void LeaveInteraction(InputAction.CallbackContext context)
         {
             LeaveSeat();
+        }
+
+        private void FirstSeat()
+        {
+            if (_isFirstSeat) return;
+            
+            _isFirstSeat = true;
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnPlayerFirstSeat);
         }
     }
 }

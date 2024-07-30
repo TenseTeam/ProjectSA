@@ -985,6 +985,7 @@ GameObject:
   - component: {fileID: 5550420708527006904}
   - component: {fileID: 3579844893258740399}
   - component: {fileID: 5245495075630358903}
+  - component: {fileID: 1128870507549295078}
   m_Layer: 0
   m_Name: pf_SkullPuzzle
   m_TagString: Untagged
@@ -1176,7 +1177,20 @@ MonoBehaviour:
   <InteractionType>k__BackingField: 2
   OnPuzzleSolved:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1128870507549295078}
+        m_TargetAssemblyTypeName: VUDK.Features.More.DialogueSystem.Components.DSDialogueTrigger,
+          Assembly-CSharp
+        m_MethodName: Trigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _objectToReveal: {fileID: 0}
 --- !u!114 &5245495075630358903
 MonoBehaviour:
@@ -1198,6 +1212,28 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _animator: {fileID: 7498797587431404248}
+--- !u!114 &1128870507549295078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969508025386011690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bae2f7f21f219046b826ad9c0b9fe50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueContainer: {fileID: 11400000, guid: 001920eba8121cd4288930c7ae005d45, type: 2}
+  StartDialogue: {fileID: 0}
+  _dialogueGroup: {fileID: 0}
+  RandomStartDialogue: 0
+  IsInstantDialogue: 0
+  IsRepeatable: 0
+  _groupedDialogues: 0
+  _startingDialoguesOnly: 0
+  _selectedDialogueGroupIndex: 0
+  _selectedDialogueIndex: 0
 --- !u!1 &5336374356222918128
 GameObject:
   m_ObjectHideFlags: 0

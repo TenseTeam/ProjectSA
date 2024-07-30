@@ -24,6 +24,7 @@ namespace ProjectSA.Managers.GameManager.ElementsIngredientsManager
         {
             _decalMaterial = new Material(_decal.material);
             _decal.material = _decalMaterial;
+            _decal.gameObject.SetActive(false);
         }
 
         private void OnEnable()
@@ -69,11 +70,13 @@ namespace ProjectSA.Managers.GameManager.ElementsIngredientsManager
 
         private void SetDecalTexture(Texture2D decalTexture)
         {
+            _decal.gameObject.SetActive(true);
             _decalMaterial.SetTexture("Base_Map", decalTexture);
         }
 
         private void ClearDecalTexture()
         {
+            _decal.gameObject.SetActive(false);
             _decalMaterial.SetTexture("Base_Map", null);
         }
     }

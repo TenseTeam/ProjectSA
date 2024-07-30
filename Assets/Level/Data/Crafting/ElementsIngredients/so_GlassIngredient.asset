@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: so_GlassIngredient
   m_EditorClassIdentifier: 
   Name: Glass
-  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  SignDecalTexture: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
+  Icon: {fileID: 21300000, guid: 86c951551bf637b4d8ea321a2a9c7b43, type: 3}
+  SignDecalTexture: {fileID: 2800000, guid: 86c951551bf637b4d8ea321a2a9c7b43, type: 3}
   InkCost: 15
   BloodCost: 15
   CanStun: 0

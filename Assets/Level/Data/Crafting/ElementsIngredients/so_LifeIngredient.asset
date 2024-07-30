@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: so_LifeIngredient
   m_EditorClassIdentifier: 
   Name: Life
-  Icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  SignDecalTexture: {fileID: 2800000, guid: ee9af7867d7e36b41975b466b43ecb11, type: 3}
+  Icon: {fileID: 21300000, guid: 1c709aa5151e4f948827d706ae5cc565, type: 3}
+  SignDecalTexture: {fileID: 2800000, guid: 1c709aa5151e4f948827d706ae5cc565, type: 3}
   InkCost: 45
   BloodCost: 65
+  CanStun: 0
   IngredientPoolKey: {fileID: 11400000, guid: 9c261d49275ff524fb913bcb53a997b5, type: 2}
   UsableElementPoolKey: {fileID: 11400000, guid: d6357af35bfcd0c44adb43a898e4a080,
     type: 2}

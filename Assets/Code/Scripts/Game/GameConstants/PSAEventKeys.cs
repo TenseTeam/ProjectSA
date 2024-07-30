@@ -20,6 +20,7 @@ namespace ProjectSA.GameConstants
         public const string OnPlayerUnseat = "OnPlayerUnseat";
         public const string OnPlayerDeath = "OnPlayerDeath";
         public const string OnPlayerDamaged = "OnPlayerRevive";
+        public const string OnPlayerFirstSeat = "OnPlayerFirstSeat";
         public const string OnElementAddedToHand = "OnElementAddedToHand";
         public const string OnElementRemovedFromHand = "OnElementRemovedFromHand";
         
