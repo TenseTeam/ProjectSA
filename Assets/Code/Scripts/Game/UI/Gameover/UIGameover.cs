@@ -1,5 +1,6 @@
 namespace Code.Scripts.Game.UI.Gameover
 {
+    using System;
     using UnityEngine;
     using TMPro;
     using ProjectSA.Managers.GameManager;

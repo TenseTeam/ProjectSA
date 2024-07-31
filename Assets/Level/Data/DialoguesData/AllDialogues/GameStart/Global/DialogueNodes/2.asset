@@ -15,7 +15,7 @@ MonoBehaviour:
   DialogueName: 2
   DialogueText: Someone here...did something wrong...and now...you better obey and
     execute to my every request if you don't want to hear the cries of innocents
-    who were suffering because of me...or should I say...you
+    who were suffering because of me...or should I say... you.
   ActorData: {fileID: 11400000, guid: 2b191adc44039e943b5629acaba57410, type: 2}
   DialogueAudioClip: {fileID: 0}
   Choices:

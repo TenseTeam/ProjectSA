@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 348723647}
   - component: {fileID: 348723646}
   - component: {fileID: 348723650}
+  - component: {fileID: 348723651}
   m_Layer: 5
   m_Name: UIGamevictory
   m_TagString: Untagged
@@ -465,6 +466,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gamevictoryMessageText: {fileID: 1304399175}
+--- !u!114 &348723651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348723645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb3ffdd3539630f4ea2154bf1b53e821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isEnableOnAwake: 1
 --- !u!1001 &373710924
 PrefabInstance:
   m_ObjectHideFlags: 0

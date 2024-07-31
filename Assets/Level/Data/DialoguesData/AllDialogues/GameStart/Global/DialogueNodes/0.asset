@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 0
   m_EditorClassIdentifier: 
   DialogueName: 0
-  DialogueText: W...what?What happened?I feel strange...different....
+  DialogueText: W...what? What happened? I feel strange... different....
   ActorData: {fileID: 11400000, guid: 6dba7b696841f5f4f88027aa06be2b09, type: 2}
   DialogueAudioClip: {fileID: 0}
   Choices:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 0
   m_EditorClassIdentifier: 
   DialogueName: 0
-  DialogueText: 'I can''t now...I would risk waking him up...better to do it later '
+  DialogueText: 'I can''t now... I would risk waking him up... better to do it later '
   ActorData: {fileID: 11400000, guid: 6dba7b696841f5f4f88027aa06be2b09, type: 2}
   DialogueAudioClip: {fileID: 0}
   Choices:

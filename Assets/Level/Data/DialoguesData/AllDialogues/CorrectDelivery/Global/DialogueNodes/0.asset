@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 0
   m_EditorClassIdentifier: 
   DialogueName: 0
-  DialogueText: I feel...I feel better...stronger...I want more, give me more, get
-    back to work!!!
+  DialogueText: I feel... I feel better... stronger... I want more, give me more,
+    get back to work!!!
   ActorData: {fileID: 11400000, guid: 2b191adc44039e943b5629acaba57410, type: 2}
   DialogueAudioClip: {fileID: 0}
   Choices:

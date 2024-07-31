@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: f3e0173d65f0e664594e8e68b51c4f74,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -18169,7 +18170,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -23709,6 +23710,79 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1481876952}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1481991905
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5652859179091589753, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_Name
+      value: pf_GlobalVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652859179091589753, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899320290237051331, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.3127034
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899320290237051331, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.839683
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899320290237051331, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.5928185
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899320290237051331, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899320290237051331, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899320290237051331, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899320290237051331, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899320290237051331, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899320290237051331, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899320290237051331, guid: 0508fd2182605a345bb53dcb14ff7693,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0508fd2182605a345bb53dcb14ff7693, type: 3}
 --- !u!1 &1485679143 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6528979228856290215, guid: ce9ace29ebfcd8746b44ddd3680ce9ff,
@@ -33849,6 +33923,7 @@ GameObject:
   - component: {fileID: 2111901015}
   - component: {fileID: 2111901019}
   - component: {fileID: 2111901020}
+  - component: {fileID: 2111901021}
   m_Layer: 5
   m_Name: UIMainMenu
   m_TagString: Untagged
@@ -33973,6 +34048,19 @@ MonoBehaviour:
   _masterSlider: {fileID: 128887035}
   _musicSlider: {fileID: 1169243651}
   _effectsSlider: {fileID: 1765012035}
+--- !u!114 &2111901021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111901014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb3ffdd3539630f4ea2154bf1b53e821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isEnableOnAwake: 1
 --- !u!4 &2112549045 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7785734170169716709, guid: 88aa41b25ea309f46a9193df97ac26d9,
@@ -34942,5 +35030,6 @@ SceneRoots:
   - {fileID: 1081344334}
   - {fileID: 1868767208}
   - {fileID: 1196199603}
+  - {fileID: 1481991905}
   - {fileID: 495581780}
   - {fileID: 2111901018}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3
   m_EditorClassIdentifier: 
   DialogueName: 3
-  DialogueText: I will do my best...I have to find a solution to all this...maybe,
+  DialogueText: I will do my best... I have to find a solution to all this... maybe,
     my master, has hidden something useful in this place...
   ActorData: {fileID: 11400000, guid: 6dba7b696841f5f4f88027aa06be2b09, type: 2}
   DialogueAudioClip: {fileID: 0}

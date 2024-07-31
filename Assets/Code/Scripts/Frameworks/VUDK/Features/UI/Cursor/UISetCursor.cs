@@ -10,6 +10,7 @@ namespace VUDK.Features.UI.Cursor
         private void Awake()
         {
             Cursor.visible = _isEnableOnAwake;
+            Cursor.lockState = _isEnableOnAwake ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
 }

@@ -425,7 +425,7 @@ public partial class @InputsMap: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""316640a0-67f2-46f1-b500-7bffc7105048"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",

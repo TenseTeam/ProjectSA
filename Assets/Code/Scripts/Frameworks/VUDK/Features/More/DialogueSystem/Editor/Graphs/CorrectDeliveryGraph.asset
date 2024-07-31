@@ -17,9 +17,9 @@ MonoBehaviour:
   Nodes:
   - NodeID: 88c65f98-2380-4eb4-91a9-cf2d0e44fedd
     GroupID: 
-    Position: {x: -260.8, y: 338.4}
+    Position: {x: -260.8, y: 338.40002}
     Name: 0
-    DialogueText: I feel...I feel better...stronger...I want more, give me more,
+    DialogueText: I feel... I feel better... stronger... I want more, give me more,
       get back to work!!!
     ActorData: {fileID: 11400000, guid: 2b191adc44039e943b5629acaba57410, type: 2}
     DialogueAudioClip: {fileID: 0}

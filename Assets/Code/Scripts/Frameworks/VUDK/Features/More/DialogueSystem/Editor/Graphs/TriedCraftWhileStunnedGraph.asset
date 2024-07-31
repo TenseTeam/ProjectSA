@@ -17,9 +17,10 @@ MonoBehaviour:
   Nodes:
   - NodeID: 88c65f98-2380-4eb4-91a9-cf2d0e44fedd
     GroupID: 
-    Position: {x: -260.8, y: 338.4}
+    Position: {x: -260.8, y: 338.40002}
     Name: 0
-    DialogueText: 'I can''t now...I would risk waking him up...better to do it later '
+    DialogueText: 'I can''t now... I would risk waking him up... better to do it
+      later '
     ActorData: {fileID: 11400000, guid: 6dba7b696841f5f4f88027aa06be2b09, type: 2}
     DialogueAudioClip: {fileID: 0}
     DialogueType: 0

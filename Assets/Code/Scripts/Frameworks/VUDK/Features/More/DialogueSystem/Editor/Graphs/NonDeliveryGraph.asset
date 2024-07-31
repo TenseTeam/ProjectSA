@@ -17,10 +17,10 @@ MonoBehaviour:
   Nodes:
   - NodeID: 88c65f98-2380-4eb4-91a9-cf2d0e44fedd
     GroupID: 
-    Position: {x: -260.8, y: 338.4}
+    Position: {x: -279.2, y: 340.80002}
     Name: 0
-    DialogueText: Have you decided to unbundle fifteen? Where's my useless potion
-      sack of meat? No one will ever find yours after what I do to you...
+    DialogueText: Where's my potion, you worthless sack of meat? No one will ever
+      find you once I'm through with you...
     ActorData: {fileID: 11400000, guid: 2b191adc44039e943b5629acaba57410, type: 2}
     DialogueAudioClip: {fileID: 0}
     DialogueType: 0

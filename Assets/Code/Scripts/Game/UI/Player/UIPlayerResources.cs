@@ -29,15 +29,15 @@ namespace ProjectSA.UI.Player
         
         private void OnEnable()
         {
-            EventManager.Ins.AddListener<PlayerConsumedEventArgs>(PSAEventKeys.OnBloodConsumed, OnBloodConsumed);
+            EventManager.Ins.AddListener<float>(PSAEventKeys.OnPlayerDamaged, OnPlayerDamaged);
         }
 
         private void OnDisable()
         {
-            EventManager.Ins.RemoveListener<PlayerConsumedEventArgs>(PSAEventKeys.OnBloodConsumed, OnBloodConsumed);
+            EventManager.Ins.RemoveListener<float>(PSAEventKeys.OnPlayerDamaged, OnPlayerDamaged);
         }
         
-        private void OnBloodConsumed(PlayerConsumedEventArgs args)
+        private void OnPlayerDamaged(float amount)
         {
             UpdateResources();
         }
