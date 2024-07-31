@@ -13,7 +13,7 @@ using Unity.Mathematics;
 public class FootstepsManager : MonoBehaviour, ICastGameManager<PSAGameManager>
 {
     public PSAGameManager GameManager => MainManager.Ins.GameManager as PSAGameManager;
-    public CharacterMovement characterMovement => GameManager.PlayerManager.CharacterMovement;
+    public CharacterMovement CharacterMovement => GameManager.PlayerManager.CharacterMovement;
 
     public AudioSource footstepSource; 
     public AudioClip[] footstepConcreteClips; 
@@ -43,10 +43,12 @@ public class FootstepsManager : MonoBehaviour, ICastGameManager<PSAGameManager>
 
     private void Update()
     {
+        if (!GameManager.PlayerManager) return;
+        
         delayTask.Process();
-        if (characterMovement.IsMoving)
+        if (CharacterMovement.IsMoving)
         {
-            if (characterMovement.IsRunning)
+            if (CharacterMovement.IsRunning)
             {
                 delayTask.ChangeDuration(stepTimer /2f);
             }
@@ -65,7 +67,7 @@ public class FootstepsManager : MonoBehaviour, ICastGameManager<PSAGameManager>
     private void PlayFootstepsSound()
     {
         delayTask.Start();
-        if (Physics.Raycast(characterMovement.transform.position, -characterMovement.transform.up, out RaycastHit hit, 2, layerMask))
+        if (Physics.Raycast(CharacterMovement.transform.position, -CharacterMovement.transform.up, out RaycastHit hit, 2, layerMask))
         {
             if (hit.transform.gameObject.layer == 9)
             {

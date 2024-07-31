@@ -30,7 +30,6 @@ namespace VUDK.Features.UI.MenuSystem
                 _mixer.SetFloat("Music", MathExtension.DenormalizeInRange(music, _minVolume, _maxVolume));
                 _mixer.SetFloat("Effects", MathExtension.DenormalizeInRange(sfx, _minVolume, _maxVolume));
 
-                Debug.Log("Loaded volume settings: " + master + " " + music + " " + sfx);
                 _masterSlider.value = master;
                 _musicSlider.value = music;
                 _effectsSlider.value = sfx;
