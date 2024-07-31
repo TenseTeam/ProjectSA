@@ -31,13 +31,13 @@ namespace ProjectSA.Gameplay.Enemy
         
         private void SetStunImage()
         {
-            _lookAtConstraint.constraintActive = false;
+            _lookAtConstraint.enabled = false;
             _shadowSpriteRenderer.sprite = _stunPhaseSprite;
         }
         
         private void SetRequestImage()
         {
-            _lookAtConstraint.constraintActive = true;
+            _lookAtConstraint.enabled = true;
             _shadowSpriteRenderer.sprite = _requestPhaseSprite;
         }
     }

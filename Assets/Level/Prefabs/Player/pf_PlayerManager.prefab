@@ -151,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84953d23384d4bd7b3b9179123f47eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxInkAmount>k__BackingField: 400
+  <MaxInkAmount>k__BackingField: 500
   <MaxBloodAmount>k__BackingField: 100
