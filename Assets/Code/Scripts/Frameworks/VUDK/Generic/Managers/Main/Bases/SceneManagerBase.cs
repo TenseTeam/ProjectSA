@@ -31,6 +31,16 @@
             WaitChangeScene(SceneManager.GetActiveScene().buildIndex);
         }
         
+        public void LoadMenuScene()
+        {
+            ChangeScene(_menuScene);
+        }
+        
+        public void LoadGameScene()
+        {
+            ChangeScene(_gameScene);
+        }
+        
         /// <summary>
         /// Checks if the current scene is the menu scene.
         /// </summary>

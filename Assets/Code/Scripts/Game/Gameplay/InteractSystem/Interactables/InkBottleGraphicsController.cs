@@ -1,5 +1,6 @@
 namespace ProjectSA.Gameplay.InteractSystem.Interactables
 {
+    using System;
     using System.Globalization;
     using UnityEngine;
     using TMPro;
@@ -13,16 +14,28 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables
 
     public class InkBottleGraphicsController : GameInteractableGraphicsController, ICastGameManager<PSAGameManager>
     {
+        [Header("Ink Bottle Settings")]
+        [SerializeField]
+        private MeshRenderer _liquidMeshRenderer;
+
         [Header("UI Elements")]
         [SerializeField]
         private GameObject _inkBottleUI;
         [SerializeField]
         private TMP_Text _inkAmountText;
 
+        private Material _liquidMaterial;
+
         public PSAGameManager GameManager => MainManager.Ins.GameManager as PSAGameManager;
+
+        protected void Awake()
+        {
+            CreateLiquidMaterial();
+        }
 
         private void Start()
         {
+            UpdateLiquidFillAmount();
             UpdateInkAmountText();
             _inkBottleUI.SetActive(false);
         }
@@ -55,15 +68,28 @@ namespace ProjectSA.Gameplay.InteractSystem.Interactables
         {
             _inkBottleUI.SetActive(false);
         }
-        
+
         private void OnInkConsumed(PlayerConsumedEventArgs args)
         {
             UpdateInkAmountText();
+            UpdateLiquidFillAmount();
         }
-        
+
         private void UpdateInkAmountText()
         {
             _inkAmountText.text = GameManager.PlayerManager.PlayerResources.CurrentInkAmount.ToString(CultureInfo.InvariantCulture) + " ml";
+        }
+
+        private void CreateLiquidMaterial()
+        {
+            _liquidMaterial = new Material(_liquidMeshRenderer.material);
+            _liquidMeshRenderer.material = _liquidMaterial;
+        }
+
+        private void UpdateLiquidFillAmount()
+        {
+            float fillAmount = GameManager.PlayerManager.PlayerResources.CurrentInkAmount / GameManager.PlayerManager.PlayerResources.MaxInkAmount;
+            _liquidMeshRenderer.material.SetFloat("_Fill", fillAmount);
         }
     }
 }

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: so_LightIngredient
   m_EditorClassIdentifier: 
   Name: Sun
-  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  SignDecalTexture: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
+  Icon: {fileID: 21300000, guid: 90b47f87b9ee20c419f60a65442d2beb, type: 3}
+  SignDecalTexture: {fileID: 2800000, guid: 90b47f87b9ee20c419f60a65442d2beb, type: 3}
   InkCost: 25
   BloodCost: 50
+  CanStun: 0
   IngredientPoolKey: {fileID: 11400000, guid: 6a7e38ef396beb24a88b267719f28cd4, type: 2}
   UsableElementPoolKey: {fileID: 11400000, guid: faf657b79ca29784fa22738363b766ef,
     type: 2}

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23c1a0601ef5c84d970a0256acb4dc5, type: 3}
+  m_Name: SkullDialogueGraph
+  m_EditorClassIdentifier: 
+  FileName: SkullDialogue
+  Groups: []
+  Nodes:
+  - NodeID: 88c65f98-2380-4eb4-91a9-cf2d0e44fedd
+    GroupID: 
+    Position: {x: -260.8, y: 338.4}
+    Name: 0
+    DialogueText: 'ah...my bones, I must be...dead...huh? But you...you''re my apprentice '
+    ActorData: {fileID: 11400000, guid: 89afb3be9ebed09479e53a6183d0e76f, type: 2}
+    DialogueAudioClip: {fileID: 0}
+    DialogueType: 0
+    Choices:
+    - Text: Next Dialogue
+      NodeID: 673400e3-d4e2-44ff-99dd-c7c89634b08c
+  - NodeID: 673400e3-d4e2-44ff-99dd-c7c89634b08c
+    GroupID: 
+    Position: {x: 208.8, y: 338.4}
+    Name: 1
+    DialogueText: 'However, I perceive a dark entity...
+
+      WHAT HAVE YOU DONE?!?
+      WHAT?!?'
+    ActorData: {fileID: 11400000, guid: 89afb3be9ebed09479e53a6183d0e76f, type: 2}
+    DialogueAudioClip: {fileID: 0}
+    DialogueType: 0
+    Choices:
+    - Text: Next Dialogue
+      NodeID: 052a03a7-cb86-4d8f-8f1f-5e12ac32ff6d
+  - NodeID: 052a03a7-cb86-4d8f-8f1f-5e12ac32ff6d
+    GroupID: 
+    Position: {x: 656.8, y: 338.4}
+    Name: 2
+    DialogueText: I will help you but...DON'T DARE TO WAKE UP EVER AGAIN
+    ActorData: {fileID: 11400000, guid: 89afb3be9ebed09479e53a6183d0e76f, type: 2}
+    DialogueAudioClip: {fileID: 0}
+    DialogueType: 0
+    Choices:
+    - Text: Next Dialogue
+      NodeID: 
+  OldGroupNames: []
+  OldUngroupedNodeNames:
+  - 0
+  - 1
+  - 2
+  OldGroupedNodeNames:
+    _dictionary: []

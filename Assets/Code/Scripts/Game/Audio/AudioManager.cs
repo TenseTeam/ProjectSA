@@ -15,6 +15,7 @@ public class PSAAudioManager : AudioControllerBase
     public static PSAAudioManager instance;
 
     [Header("Audio Source")]
+    public AudioSource loopMusicSource;
     public AudioSource backgroundMusicSource;
     public AudioSource ambienceSource;
     public AudioSource oneShotVoiceSource;
@@ -30,7 +31,13 @@ public class PSAAudioManager : AudioControllerBase
     public AudioClip ambienceClip;
     public AudioClip potionCrafted;
     public AudioClip[] shadowSpeaking;
+    public AudioClip[] alchemistSpeaking;
     public AudioClip chairSound;
+    public AudioClip hoveredSound;
+    public AudioClip clickSound;
+    public AudioClip startGameSound;
+    public AudioClip paperSound;
+    public AudioClip loopClip;
 
     [Header("Trigger Chance/Interval")]
     [Range(0, 100)] public float voicePlayChance = 30f;
@@ -55,15 +62,24 @@ public class PSAAudioManager : AudioControllerBase
 
     void Start()
     {
-        PlayBackgroundMusic();
+        //PlayBackgroundMusic();
         PlayAmbience();
         StartCoroutine(PlayRandomVoiceCoroutine());
         StartCoroutine(PlayShadowVoiceCoroutine());
+        PlayIntroMusic();
     }
 
-    
+    void PlayIntroMusic()
+    {
+        loopMusicSource.clip = loopClip;
+        loopMusicSource.loop = true;
+        loopMusicSource.Play();
+    }
+
+
     public void PlayBackgroundMusic()
     {
+        loopMusicSource.Stop();
         if (backgroundMusicClip != null)
         {
             backgroundMusicSource.clip = backgroundMusicClip;
@@ -174,5 +190,38 @@ public class PSAAudioManager : AudioControllerBase
                 AudioManager.PlayStereo(clip);
             }
         }
+    }
+
+    public void PlayAlchemistDialogue()
+    {
+        if (alchemistSpeaking.Length > 0)
+        {
+            int randomIndex = Random.Range(0, alchemistSpeaking.Length);
+            AudioClip clip = alchemistSpeaking[randomIndex];
+            if (clip != null)
+            {
+                AudioManager.PlayStereo(clip);
+            }
+        }
+    }
+
+    public void PlayPaperSound()
+    {
+        AudioManager.PlayStereo(paperSound, false);
+    }
+
+    public void PlayHoveredSound()
+    {
+        AudioManager.PlayStereo(hoveredSound, false);
+    }
+
+    public void PlaySelectedSound()
+    {
+        AudioManager.PlayStereo(clickSound, false);
+    }
+
+    public void PlayStartGameSound()
+    {
+        AudioManager.PlayStereo(startGameSound, false);
     }
 }

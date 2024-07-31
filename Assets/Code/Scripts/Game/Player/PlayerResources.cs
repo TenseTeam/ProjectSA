@@ -38,11 +38,11 @@ namespace ProjectSA.Player
 
         public bool TryConsumeBlood(float amount)
         {
+            bool canConsume = CurrentBloodAmount >= amount;
             DamagePlayer(amount);
-            
             PlayerConsumedEventArgs playerConsumedEventArgs = new PlayerConsumedEventArgs(this, amount);
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnBloodConsumed, playerConsumedEventArgs);
-            return CurrentBloodAmount >= amount;
+            return canConsume;
         }
 
         public void DamagePlayer(float damage)

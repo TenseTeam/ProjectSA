@@ -12,11 +12,6 @@ namespace Code.Scripts.Game.Gameplay.EnvironmentPuzzles.SkullPuzzle
         [SerializeField]
         private GameObject _objectToReveal;
 
-        private void Start()
-        {
-            _objectToReveal.SetActive(false);
-        }
-
         protected override void OnInteract()
         {
             base.OnInteract();

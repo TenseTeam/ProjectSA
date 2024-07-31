@@ -1,5 +1,7 @@
 namespace ProjectSA.Player.Seat
 {
+    using Managers.GameMachine.Data.Enums;
+    using Managers.GameManager;
     using UnityEngine;
     using UnityEngine.InputSystem;
     using VUDK.Features.Main.Camera.CameraViews;
@@ -7,6 +9,9 @@ namespace ProjectSA.Player.Seat
     using VUDK.Features.Main.EventSystem;
     using ProjectSA.GameConstants;
     using ProjectSA.Gameplay.InteractSystem.Interactables.Base;
+    using UnityEngine.Events;
+    using VUDK.Generic.Managers.Main;
+    using VUDK.Generic.Managers.Main.Interfaces.Casts;
 
     public class PlayerSeat : GameInteractable
     {
@@ -21,7 +26,11 @@ namespace ProjectSA.Player.Seat
         private bool _canLook;
 
         private bool _isSeated;
-
+        private bool _isFirstSeat;
+        
+        public UnityEvent OnPlayerSeat;
+        public UnityEvent OnPlayerUnseat;
+        
         private void OnValidate()
         {
             if (!_playerCamera) return;
@@ -49,20 +58,22 @@ namespace ProjectSA.Player.Seat
             base.OnDisable();
             InputsManager.Inputs.Interaction.LeaveInteraction.performed -= LeaveInteraction;
         }
-        
-        public override void Interact()
+
+        protected override void OnInteract()
         {
-            base.Interact();
+            base.OnInteract();
             SeatPlayer();
         }
-        
+
         public void SeatPlayer()
         {
             if (_isSeated) return;
             
+            FirstSeat();
             _isSeated = true;
             _playerCamera.SetTarget(_target, _smoothTime, _canLook);
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnPlayerSeat);
+            OnPlayerSeat?.Invoke();
         }
         
         public void LeaveSeat()
@@ -72,11 +83,20 @@ namespace ProjectSA.Player.Seat
             _isSeated = false;
             _playerCamera.ResetTarget();
             EventManager.Ins.TriggerEvent(PSAEventKeys.OnPlayerUnseat);
+            OnPlayerUnseat?.Invoke();
         }
         
         private void LeaveInteraction(InputAction.CallbackContext context)
         {
             LeaveSeat();
+        }
+
+        private void FirstSeat()
+        {
+            if (_isFirstSeat) return;
+            
+            _isFirstSeat = true;
+            EventManager.Ins.TriggerEvent(PSAEventKeys.OnPlayerFirstSeat);
         }
     }
 }

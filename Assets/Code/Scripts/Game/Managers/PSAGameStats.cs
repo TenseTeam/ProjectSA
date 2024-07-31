@@ -11,6 +11,8 @@ namespace ProjectSA.Managers
         [field: SerializeField, TextArea(2, 10)]
         public string GameoverFailedRequestMessage { get; private set; }
         [field: SerializeField, TextArea(2, 10)]
+        public string GameoverCraftedAllPotionsMessage { get; private set; }
+        [field: SerializeField, TextArea(2, 10)]
         public string GameVictoryMessage { get; private set; }
     }
 }

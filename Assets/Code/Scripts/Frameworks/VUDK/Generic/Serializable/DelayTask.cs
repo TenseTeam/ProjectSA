@@ -83,7 +83,7 @@
         public void ChangeDuration(float duration)
         {
             Duration = duration;
-            Reset();
+            //Reset();
         }
 
         private void Complete()

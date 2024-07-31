@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 1681273239795038299}
   - component: {fileID: 6778074417722442289}
   - component: {fileID: 6215099281433380333}
+  - component: {fileID: 1276502855272610403}
   m_Layer: 0
   m_Name: Parchments
   m_TagString: Untagged
@@ -317,6 +318,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1276502855272610403
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189050285323174484}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5955487702403995989, guid: a9283024647580c49b9ddb3a71a8861f, type: 3}
 --- !u!1 &6706668327105960507
 GameObject:
   m_ObjectHideFlags: 0

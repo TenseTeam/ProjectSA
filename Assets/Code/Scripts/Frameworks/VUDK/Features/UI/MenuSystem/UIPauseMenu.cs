@@ -49,6 +49,7 @@ namespace VUDK.Features.UI.MenuSystem
             _isPaused = true;
             _pausePanel.gameObject.SetActive(true);
             TimeExtension.SetTimeScale(0f);
+            InputsManager.Inputs.Camera.Disable();
         }
 
         public void DisablePause()
@@ -58,6 +59,7 @@ namespace VUDK.Features.UI.MenuSystem
             _pausePanel.gameObject.SetActive(false);
             TimeExtension.SetTimeScale(1f);
             Reset();
+            InputsManager.Inputs.Camera.Enable();
         }
 
         private void Reset()
