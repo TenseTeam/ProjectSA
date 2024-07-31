@@ -1,5 +1,7 @@
 using ProjectSA.GameConstants;
+using ProjectSA.Player.Cauldron;
 using ProjectSA.Player.Cauldron.EventArgs;
+using ProjectSA.Player.Seat;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,13 +29,16 @@ public class PSAAudioManager : AudioControllerBase
     public AudioClip[] oneShotShadowClips;
     public AudioClip ambienceClip;
     public AudioClip potionCrafted;
-    public AudioClip shadowSpeaking;
+    public AudioClip[] shadowSpeaking;
+    public AudioClip chairSound;
 
     [Header("Trigger Chance/Interval")]
     [Range(0, 100)] public float voicePlayChance = 30f;
     [Range(0, 100)] public float shadowPlayChance = 30f;
     public float minInterval = 5f;
     public float maxInterval = 10f;
+
+    public GameObject player;
 
     void Awake()
     {
@@ -140,10 +145,17 @@ public class PSAAudioManager : AudioControllerBase
     protected override void RegisterAudioEvents()
     {
         EventManager.Ins.AddListener<CauldronCraftEventArgs>(PSAEventKeys.OnRequestSuccess, PlayPotionCrafted);
+        EventManager.Ins.AddListener(PSAEventKeys.OnPlayerSeat, PlayChairSound);
     }
 
     protected override void UnregisterAudioEvents()
     {
+    }
+
+    void PlayChairSound()
+    {
+        Vector3 playerPosition = player.transform.position;
+        AudioManager.PlaySpatial(chairSound, playerPosition);
     }
 
     public void PlayPotionCrafted(CauldronCraftEventArgs cauldron)
@@ -153,6 +165,14 @@ public class PSAAudioManager : AudioControllerBase
 
     public void PlayShadowDialogue()
     {
-        AudioManager.PlayStereo(shadowSpeaking, false);
+        if (shadowSpeaking.Length > 0)
+        {
+            int randomIndex = Random.Range(0, shadowSpeaking.Length);
+            AudioClip clip = shadowSpeaking[randomIndex];
+            if (clip != null)
+            {
+                AudioManager.PlayStereo(clip);
+            }
+        }
     }
 }

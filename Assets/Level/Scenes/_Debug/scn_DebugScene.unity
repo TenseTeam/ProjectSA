@@ -243,6 +243,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
         type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 555543637}
+    - target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
+        type: 3}
+      propertyPath: chairSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5f1d9eeb5b90eba48aae8ea087c5ba0a, type: 3}
+    - target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
+        type: 3}
       propertyPath: potionCrafted
       value: 
       objectReference: {fileID: 8300000, guid: a71be80003c3d8a44a0586df7e6c1878, type: 3}
@@ -254,7 +264,7 @@ PrefabInstance:
     - target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
         type: 3}
       propertyPath: voicePlayChance
-      value: 0
+      value: 30.4
       objectReference: {fileID: 0}
     - target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
         type: 3}
@@ -266,6 +276,31 @@ PrefabInstance:
       propertyPath: potionCraftedClip
       value: 
       objectReference: {fileID: 8300000, guid: a71be80003c3d8a44a0586df7e6c1878, type: 3}
+    - target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
+        type: 3}
+      propertyPath: shadowSpeaking.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
+        type: 3}
+      propertyPath: shadowSpeaking.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3915638497aff6349a67110e8d395496, type: 3}
+    - target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
+        type: 3}
+      propertyPath: shadowSpeaking.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: f652f12ac4daad444978097d87b07393, type: 3}
+    - target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
+        type: 3}
+      propertyPath: shadowSpeaking.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: b165fb9b9b9377e4c88be2118ba71083, type: 3}
+    - target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
+        type: 3}
+      propertyPath: shadowSpeaking.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 71d08f27b9c4e9c40a688509dc331842, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1492,6 +1527,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 124618570}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &555543637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3930697573390429473, guid: fb500ff4092d5314f8b43abb54b89667,
+    type: 3}
+  m_PrefabInstance: {fileID: 6639203641934676717}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &561518312 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1420887769370802520, guid: b5204fb14acb2594dba58d84e997763e,
@@ -2047,6 +2088,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84b780f5b3d45d9909d24cf77ee63bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1086834222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2873986936893340150, guid: b5204fb14acb2594dba58d84e997763e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6645615881721089280}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1105671883 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4872204218138725265, guid: b5204fb14acb2594dba58d84e997763e,
@@ -3090,7 +3137,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6639203641934676717}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 555543637}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfa32215170b0f6429654f53459035e7, type: 3}
@@ -3927,9 +3974,44 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5047413558576891069, guid: 294371b1c25a4534e840d39fdc5799b5,
         type: 3}
+      propertyPath: OnEndSpeaking.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047413558576891069, guid: 294371b1c25a4534e840d39fdc5799b5,
+        type: 3}
+      propertyPath: OnEndSpeaking.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047413558576891069, guid: 294371b1c25a4534e840d39fdc5799b5,
+        type: 3}
+      propertyPath: OnEndSpeaking.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1086834222}
+    - target: {fileID: 5047413558576891069, guid: 294371b1c25a4534e840d39fdc5799b5,
+        type: 3}
       propertyPath: OnBeginSpeaking.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 701615235}
+    - target: {fileID: 5047413558576891069, guid: 294371b1c25a4534e840d39fdc5799b5,
+        type: 3}
+      propertyPath: OnEndSpeaking.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047413558576891069, guid: 294371b1c25a4534e840d39fdc5799b5,
+        type: 3}
+      propertyPath: OnEndSpeaking.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047413558576891069, guid: 294371b1c25a4534e840d39fdc5799b5,
+        type: 3}
+      propertyPath: OnEndSpeaking.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047413558576891069, guid: 294371b1c25a4534e840d39fdc5799b5,
+        type: 3}
+      propertyPath: OnEndSpeaking.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6874858521712236325, guid: 294371b1c25a4534e840d39fdc5799b5,
         type: 3}
       propertyPath: m_Name
