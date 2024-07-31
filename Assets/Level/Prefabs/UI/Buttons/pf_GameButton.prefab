@@ -137,7 +137,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnButtonPressedSuccess:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
+          type: 3}
+        m_TargetAssemblyTypeName: PSAAudioManager, Assembly-CSharp
+        m_MethodName: PlaySelectedSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnButtonPressedFail:
     m_PersistentCalls:
       m_Calls: []
@@ -166,6 +179,19 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: -8246520602715770956, guid: 10edc2403513d994691c0f7f961a698c,
               type: 2}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8823202398573817069, guid: e5768a4e6a9bfd3469de5b56f5b63bed,
+            type: 3}
+          m_TargetAssemblyTypeName: PSAAudioManager, Assembly-CSharp
+          m_MethodName: PlayHoveredSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -280,7 +306,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 46.1
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
